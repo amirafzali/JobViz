@@ -17,4 +17,32 @@ public class SalaryT {
         this.city = city;
         this.year = year;
     }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public String getPosition(){
+        return this.pos;
+    }
+
+    public String getEmployer(){
+        return this.employer;
+    }
+
+    public String getSector(){
+        return this.sect;
+    }
+
+    public String getCity(){
+        return this.city;
+    }
+
+    public int getSalary(){
+        return this.sal;
+    }
+
+    public int getYear(){
+        return this.year;
+    }
 }
