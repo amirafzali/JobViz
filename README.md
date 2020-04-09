@@ -1,1 +1,3 @@
-Some readme
+# Final 2XB3 Implementation
+
+Explanation on how it works here...
