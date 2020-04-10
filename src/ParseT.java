@@ -2,6 +2,7 @@ package src;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,20 +19,24 @@ public class ParseT {
      */
 
     private SalariesT allSalaries;
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws Exception {
         new ParseT("data/data.csv");
     }
 
-    public ParseT(String fileName) throws FileNotFoundException {
+    public ParseT(String fileName) throws Exception {
         Scanner scanner = new Scanner(new File(fileName));
+        ArrayList<SalaryT> allRows = new ArrayList<>();
         while (scanner.hasNext()) {
             ArrayList<String> line = parseLine(scanner.nextLine());
             String name = line.get(1) + " " + line.get(2);
             double salary = Double.parseDouble(line.get(3)), benefits = Double.parseDouble(line.get(4));
             int year = Integer.parseInt(line.get(7));
-            SalaryT row = new SalaryT(line.get(0), name, salary, benefits, line.get(5), line.get(6), year, "");
+            allRows.add(new SalaryT(line.get(0), name, salary, benefits, line.get(5), line.get(6), year, ""));
         }
         scanner.close();
+        if(allRows.size() == 0) throw new Exception("Empty data");
+
+
     }
 
     public static ArrayList<String> parseLine(String line) {
