@@ -172,7 +172,6 @@ public class InsightPanel extends JPanel implements ActionListener {
             copy = copy.filterSalary(l, h);
         }
 
-        copy.sort();
         outputBox(copy);
     }
 }
