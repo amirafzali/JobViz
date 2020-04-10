@@ -5,10 +5,22 @@ import java.util.ArrayList;
 public class SalariesT {
     private final ArrayList<SalaryT> s;
     private final int year;
+    private final String[] sectors, employers, positions;
+
+    public SalariesT(ArrayList<SalaryT> salaries, int year, String[] sectors, String[] employers, String[] positions) {
+        this.s = salaries;
+        this.year = year;
+        this.sectors = sectors;
+        this.employers = employers;
+        this.positions = positions;
+    }
 
     public SalariesT(ArrayList<SalaryT> salaries, int year) {
         this.s = salaries;
         this.year = year;
+        this.sectors = null;
+        this.employers = null;
+        this.positions = null;
     }
 
     public int size() {
@@ -74,6 +86,18 @@ public class SalariesT {
             }
         }
         return salaries;
+    }
+
+    public String[] getSectors() {
+        return sectors;
+    }
+
+    public String[] getEmployers() {
+        return employers;
+    }
+
+    public String[] getPositions() {
+        return positions;
     }
 }
 

@@ -2,6 +2,7 @@ package src;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -10,11 +11,10 @@ public class ParseT {
     private SalariesT allSalaries;
     HashSet<String> uniqueSectors, uniqueEmployers, uniquePositions;
 
-    public SalariesT getAllSalaries() {
-        return allSalaries;
-    }
-
     public ParseT(String fileName) throws Exception {
+        uniqueSectors = new HashSet<>();
+        uniqueEmployers = new HashSet<>();
+        uniquePositions = new HashSet<>();
         parseFile(fileName);
     }
 
@@ -37,7 +37,8 @@ public class ParseT {
         scanner.close();
         if(allRows.size() == 0) throw new Exception("Empty data");
 
-        allSalaries = new SalariesT(allRows, allRows.get(0).getYear());
+        allSalaries = new SalariesT(allRows, allRows.get(0).getYear(), uniqueSectors.toArray(new String[0]),
+                        uniqueEmployers.toArray(new String[0]), uniquePositions.toArray(new String[0]));
     }
 
     private void setUniques(ArrayList<String> line) {
@@ -46,6 +47,9 @@ public class ParseT {
         uniquePositions.add(line.get(6));
     }
 
+    public SalariesT getAllSalaries() {
+        return allSalaries;
+    }
 
     public static ArrayList<String> parseLine(String line) {
         char commaDelim = ',';
