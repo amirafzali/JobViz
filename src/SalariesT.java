@@ -21,7 +21,7 @@ public class SalariesT {
                 return e;
             }
         }
-        return new SalaryT(null, 0,null,null, null, null, 0);
+        return null;
     }
 
     public void add(SalaryT salary) {
