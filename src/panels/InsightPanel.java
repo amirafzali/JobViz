@@ -146,7 +146,7 @@ public class InsightPanel extends JPanel implements ActionListener {
 
         System.out.println(copy.size());
         System.out.println("g");
-        copy.sort();
+        copy.sort(true);
         System.out.println("t");
         if(!anyFilter) {
             System.out.println("x");

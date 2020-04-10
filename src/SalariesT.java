@@ -48,19 +48,63 @@ public class SalariesT {
         this.s.add(salary);
     }
 
-    public void sort() {
-        int length = this.s.size();
-        for (int i = 0; i < length - 1; i++) {
-            int min = i;
-            for (int j = i+1; j < length - 1; j++) {
-                if (this.s.get(min).getSalary() > this.s.get(j).getSalary()) {
-                    min = j;
+    private void merge(int l, int m, int h, boolean ascending) {
+        int l1 = m - l + 1;
+        int l2 = h - m;
+        ArrayList<SalaryT> leftArray = new ArrayList<>(l1);
+        ArrayList<SalaryT> rightArray = new ArrayList<>(l2);
+        for (int i = 0; i < l1; i++) {
+            leftArray.add(this.s.get(l + i));
+        }
+        for (int i = 0; i < l2; i++) {
+            rightArray.add(this.s.get(m + i + 1));
+        }
+        int i = 0;
+        int j = 0;
+        int k = l;
+        while (i < l1 && j < l2) {
+            if (ascending) {
+                if (leftArray.get(i).getSalary() <= rightArray.get(j).getSalary()) {
+                    this.s.set(k, leftArray.get(i));
+                    i++;
+                } else if (leftArray.get(i).getSalary() > rightArray.get(j).getSalary()) {
+                    this.s.set(k, rightArray.get(j));
+                    j++;
+                }
+            } else {
+                if (leftArray.get(i).getSalary() > rightArray.get(j).getSalary()) {
+                    this.s.set(k, leftArray.get(i));
+                    i++;
+                } else if (leftArray.get(i).getSalary() <= rightArray.get(j).getSalary()) {
+                    this.s.set(k, rightArray.get(j));
+                    j++;
                 }
             }
-            SalaryT t = this.s.get(i);
-            this.s.set(i, this.s.get(min));
-            this.s.set(min, t);
+            k++;
         }
+        while (i < l1) {
+            this.s.set(k, leftArray.get(i));
+            k++;
+            i++;
+        }
+        while (j < l2) {
+            this.s.set(k, rightArray.get(j));
+            k++;
+            j++;
+        }
+    }
+
+    private void mergeSort(int l, int h, boolean ascending) {
+        if (l < h) {
+            int m = (l + h)/2;
+            mergeSort(l, m, ascending);
+            mergeSort(m+1, h, ascending);
+            merge(l, m, h, ascending);
+        }
+    }
+
+    public void sort(boolean ascending) {
+        mergeSort(0, this.s.size() - 1, ascending);
     }
 
     public boolean isSorted() {
