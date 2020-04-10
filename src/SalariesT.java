@@ -84,7 +84,7 @@ public class SalariesT {
         return salaries;
     }
 
-    public SalariesT filter(String name) {
+    public SalariesT filterSector(String name) {
         SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
         for (SalaryT e: this.s) {
             if (e.getSector().equals(name)) {
