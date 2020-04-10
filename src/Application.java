@@ -2,7 +2,7 @@ package src;
 
 public class Application {
     public static void main(String[] args) {
-        readTest();
+        GUITest x = new GUITest();
     }
 
     public static void readTest() {
