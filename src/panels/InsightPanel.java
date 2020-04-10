@@ -1,6 +1,7 @@
-package src;
+package src.panels;
 
 import lib.AutoCompletion;
+import src.SalariesT;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -98,27 +99,29 @@ public class InsightPanel extends JPanel implements ActionListener {
     }
 
     public void outputBox(SalariesT outputData) {
+        outputBox(outputData, false);
+    }
+
+    public void outputBox(SalariesT outputData, boolean limit) {
         JFrame frame = new JFrame();
         frame.setTitle("Output");
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800,500));
-        String[][] data = new String[outputData.size()][4];
+        System.out.println(limit);
+        int max = limit ? 500:outputData.size();
+        String[][] data = new String[max][4];
 
-        for(int i=0; i<outputData.size(); i++) {
+        for(int i=0; i<max; i++) {
             data[i] = outputData.getSalaries().get(i).toStringArray();
         }
 
-
-        // Column Names
         String[] columnNames = { "Sector", "Employer", "Job", "Salary" };
 
-        //frame.add(t);
         JTable j = new JTable(data, columnNames);
         j.setBounds(30, 40, 200, 300);
 
-        // adding it to JScrollPane
         JScrollPane sp = new JScrollPane(j);
         frame.add(sp);
         frame.pack();
@@ -128,13 +131,29 @@ public class InsightPanel extends JPanel implements ActionListener {
     private void showResults() {
         System.out.println(data.size());
         SalariesT copy = data.copy();
+        boolean anyFilter = sBox.isSelected() || eBox.isSelected() || posBox.isSelected();
         System.out.println(copy.size());
-        System.out.println(sList.getSelectedItem());
+
         if(sBox.isSelected()) {
             copy = copy.filterSector(String.valueOf(sList.getSelectedItem()));
         }
+        if(eBox.isSelected()) {
+            copy = copy.filterEmployer(String.valueOf(eList.getSelectedItem()));
+        }
+        if(posBox.isSelected()) {
+            copy = copy.filterPosition(String.valueOf(posList.getSelectedItem()));
+        }
+
         System.out.println(copy.size());
+        System.out.println("g");
         copy.sort();
-        outputBox(copy);
+        System.out.println("t");
+        if(!anyFilter) {
+            System.out.println("x");
+            outputBox(copy, true);
+        } else {
+            System.out.println("y");
+            outputBox(copy);
+        }
     }
 }

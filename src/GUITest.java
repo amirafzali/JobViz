@@ -1,5 +1,7 @@
 package src;
 
+import src.panels.InsightPanel;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
