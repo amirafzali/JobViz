@@ -2,11 +2,13 @@ package src;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class ParseT {
 
     private SalariesT allSalaries;
+    HashSet<String> uniqueSectors, uniqueEmployers, uniquePositions;
 
     public SalariesT getAllSalaries() {
         return allSalaries;
@@ -22,7 +24,7 @@ public class ParseT {
         scanner.nextLine();
         while(scanner.hasNext()) {
             ArrayList<String> line = parseLine(scanner.nextLine());
-
+            setUniques(line);
             String name = line.get(1) + " " + line.get(2);
             String formatSal = String.join("",line.get(3).substring(1).split(","));
             String formatBenefits = String.join("",line.get(4).substring(1).split(","));
@@ -37,6 +39,13 @@ public class ParseT {
 
         allSalaries = new SalariesT(allRows, allRows.get(0).getYear());
     }
+
+    private void setUniques(ArrayList<String> line) {
+        uniqueSectors.add(line.get(0));
+        uniqueEmployers.add(line.get(5));
+        uniquePositions.add(line.get(6));
+    }
+
 
     public static ArrayList<String> parseLine(String line) {
         char commaDelim = ',';
