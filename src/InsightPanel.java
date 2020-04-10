@@ -9,8 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class InsightPanel extends JPanel implements ActionListener {
-    private JPanel header, sector, employer, position;
-    private SalariesT data;
+    private final SalariesT data;
     private JCheckBox sBox, eBox,posBox;
     private JComboBox<String> sList, eList, posList;
     private final Font standardFont = new Font("serif", Font.PLAIN, 20);
@@ -31,7 +30,7 @@ public class InsightPanel extends JPanel implements ActionListener {
     }
 
     private void welcomeText() {
-        header = new JPanel();
+        JPanel header = new JPanel();
         header.setLayout(new BoxLayout(header, BoxLayout.PAGE_AXIS));
         Label h1 = new Label("Job Insight", SwingConstants.CENTER);
         h1.setAlignment(Label.CENTER);
@@ -48,7 +47,7 @@ public class InsightPanel extends JPanel implements ActionListener {
 
 
     private void setupSector() {
-        sector = new JPanel();
+        JPanel sector = new JPanel();
         sector.setLayout(new FlowLayout());
         sList = new JComboBox<>(data.getSectors());
         sList.setPreferredSize(new Dimension(350,sList.getPreferredSize().height));
@@ -62,7 +61,7 @@ public class InsightPanel extends JPanel implements ActionListener {
     }
 
     private void setupEmployer() {
-        employer = new JPanel();
+        JPanel employer = new JPanel();
         employer.setLayout(new FlowLayout());
         eList = new JComboBox<>(data.getEmployers());
         eList.setPreferredSize(new Dimension(350,eList.getPreferredSize().height));
@@ -72,11 +71,10 @@ public class InsightPanel extends JPanel implements ActionListener {
         employer.add(eList);
 
         this.add(employer);
-        System.out.println("x");
     }
 
     private void setupPosition() {
-        position = new JPanel();
+        JPanel position = new JPanel();
         position.setLayout(new FlowLayout());
         posList = new JComboBox<>(data.getPositions());
         posList.setPreferredSize(new Dimension(350,posList.getPreferredSize().height));
@@ -86,7 +84,6 @@ public class InsightPanel extends JPanel implements ActionListener {
         position.add(posList);
         AutoCompletion.enable(posList);
         this.add(position);
-        System.out.println("x");
     }
 
     private void setupSubmit() {
