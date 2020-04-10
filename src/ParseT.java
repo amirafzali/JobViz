@@ -19,11 +19,17 @@ public class ParseT {
     public void parseFile(String fileName) throws Exception {
         Scanner scanner = new Scanner(new File(fileName));
         ArrayList<SalaryT> allRows = new ArrayList<>();
+        scanner.nextLine();
         while(scanner.hasNext()) {
             ArrayList<String> line = parseLine(scanner.nextLine());
+
             String name = line.get(1) + " " + line.get(2);
-            double salary = Double.parseDouble(line.get(3)), benefits = Double.parseDouble(line.get(4));
+            String formatSal = String.join("",line.get(3).substring(1).split(","));
+            String formatBenefits = String.join("",line.get(4).substring(1).split(","));
+            double salary = Double.parseDouble(formatSal);
+            double benefits = Double.parseDouble(formatBenefits);
             int year = Integer.parseInt(line.get(7));
+
             allRows.add(new SalaryT(line.get(0), name, salary, benefits, line.get(5), line.get(6), year, ""));
         }
         scanner.close();
@@ -47,16 +53,12 @@ public class ParseT {
         for(char c:chars) {
             if(c == quoteDelim) {
                 inQuotes = !inQuotes;
+                continue;
             }
             if (inQuotes) {
                 currrent.append(c);
             } else {
-                if (c == quoteDelim) {
-                    if (chars[0] != '"') {
-                        currrent.append('"');
-                    }
-                    currrent.append('"');
-                } else if (c == commaDelim) {
+                if (c == commaDelim) {
                     result.add(currrent.toString());
                     currrent = new StringBuilder();
                 } else if (c == '\n') {
