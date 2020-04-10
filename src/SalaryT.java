@@ -1,4 +1,4 @@
-
+package src;
 public class SalaryT {
     private String name; //Format as lastname, firstname
     private String pos;
