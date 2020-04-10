@@ -82,7 +82,6 @@ public class SalaryT {
                 this.pos.contentEquals(that.getPosition()) &&
                 this.employer.contentEquals(that.getEmployer()) &&
                 this.sector.contentEquals(that.getSector()) &&
-                this.city.contentEquals(that.getCity()) &&
                 this.salary == that.getSalary() &&
                 this.year == that.getYear());
     }
