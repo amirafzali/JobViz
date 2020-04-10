@@ -2,17 +2,19 @@ package src;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class ParseT {
 
     private SalariesT allSalaries;
-
-    public SalariesT getAllSalaries() {
-        return allSalaries;
-    }
+    HashSet<String> uniqueSectors, uniqueEmployers, uniquePositions;
 
     public ParseT(String fileName) throws Exception {
+        uniqueSectors = new HashSet<>();
+        uniqueEmployers = new HashSet<>();
+        uniquePositions = new HashSet<>();
         parseFile(fileName);
     }
 
@@ -22,7 +24,7 @@ public class ParseT {
         scanner.nextLine();
         while(scanner.hasNext()) {
             ArrayList<String> line = parseLine(scanner.nextLine());
-
+            setUniques(line);
             String name = line.get(1) + " " + line.get(2);
             String formatSal = String.join("",line.get(3).substring(1).split(","));
             String formatBenefits = String.join("",line.get(4).substring(1).split(","));
@@ -35,7 +37,18 @@ public class ParseT {
         scanner.close();
         if(allRows.size() == 0) throw new Exception("Empty data");
 
-        allSalaries = new SalariesT(allRows, allRows.get(0).getYear());
+        allSalaries = new SalariesT(allRows, allRows.get(0).getYear(), uniqueSectors.toArray(new String[0]),
+                        uniqueEmployers.toArray(new String[0]), uniquePositions.toArray(new String[0]));
+    }
+
+    private void setUniques(ArrayList<String> line) {
+        uniqueSectors.add(line.get(0));
+        uniqueEmployers.add(line.get(5));
+        uniquePositions.add(line.get(6));
+    }
+
+    public SalariesT getAllSalaries() {
+        return allSalaries;
     }
 
     public static ArrayList<String> parseLine(String line) {

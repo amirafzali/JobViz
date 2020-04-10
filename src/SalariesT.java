@@ -1,14 +1,28 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SalariesT {
     private final ArrayList<SalaryT> s;
     private final int year;
+    private final String[] sectors, employers, positions;
+
+    public SalariesT(ArrayList<SalaryT> salaries, int year, String[] sectors, String[] employers, String[] positions) {
+        this.s = salaries;
+        this.year = year;
+        this.sectors = sectors;
+        this.employers = employers;
+        this.positions = positions;
+        Arrays.sort(this.sectors);
+    }
 
     public SalariesT(ArrayList<SalaryT> salaries, int year) {
         this.s = salaries;
         this.year = year;
+        this.sectors = null;
+        this.employers = null;
+        this.positions = null;
     }
 
     public int size() {
@@ -56,7 +70,11 @@ public class SalariesT {
         return true;
     }
 
-    public SalariesT filter(int low, int high) {
+    public SalariesT copy() {
+        return new SalariesT(new ArrayList<SalaryT>(this.getSalaries()), this.year);
+    }
+
+    public SalariesT filterSalary(int low, int high) {
         SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
         for (SalaryT e: this.s) {
             if (low < e.getSalary() && e.getSalary() < high) {
@@ -74,6 +92,18 @@ public class SalariesT {
             }
         }
         return salaries;
+    }
+
+    public String[] getSectors() {
+        return sectors;
+    }
+
+    public String[] getEmployers() {
+        return employers;
+    }
+
+    public String[] getPositions() {
+        return positions;
     }
 }
 
