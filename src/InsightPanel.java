@@ -5,10 +5,14 @@ import lib.AutoCompletion;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class InsightPanel extends JPanel {
+public class InsightPanel extends JPanel implements ActionListener {
     private JPanel header, sector, employer, position;
     private SalariesT data;
+    private JCheckBox sBox, eBox,posBox;
+    private JComboBox<String> sList, eList, posList;
     private final Font standardFont = new Font("serif", Font.PLAIN, 20);
 
     public InsightPanel(SalariesT data) {
@@ -33,7 +37,7 @@ public class InsightPanel extends JPanel {
         h1.setAlignment(Label.CENTER);
         h1.setFont(standardFont.deriveFont(30f));
         Label p1 = new Label("Please select your filtered categories.");
-        Label p2 = new Label("If nothing is selected, then all data is used.");
+        Label p2 = new Label("If nothing is selected, then the top 500 results are shown.");
         p1.setAlignment(Label.CENTER);
         p2.setAlignment(Label.CENTER);
         header.add(h1);
@@ -46,11 +50,12 @@ public class InsightPanel extends JPanel {
     private void setupSector() {
         sector = new JPanel();
         sector.setLayout(new FlowLayout());
-        JComboBox<String> sectorList = new JComboBox<>(data.getSectors());
-        sectorList.setPreferredSize(new Dimension(350,sectorList.getPreferredSize().height));
+        sList = new JComboBox<>(data.getSectors());
+        sList.setPreferredSize(new Dimension(350,sList.getPreferredSize().height));
         sector.add(new Label("Sector: "));
-        sector.add(new Checkbox());
-        sector.add(sectorList);
+        sBox = new JCheckBox();
+        sector.add(sBox);
+        sector.add(sList);
 
         this.add(sector);
         System.out.println("x");
@@ -59,11 +64,12 @@ public class InsightPanel extends JPanel {
     private void setupEmployer() {
         employer = new JPanel();
         employer.setLayout(new FlowLayout());
-        JComboBox<String> employerList = new JComboBox<>(data.getEmployers());
-        employerList.setPreferredSize(new Dimension(350,employerList.getPreferredSize().height));
+        eList = new JComboBox<>(data.getEmployers());
+        eList.setPreferredSize(new Dimension(350,eList.getPreferredSize().height));
         employer.add(new Label("Employer: "));
-        employer.add(new Checkbox());
-        employer.add(employerList);
+        eBox = new JCheckBox();
+        employer.add(eBox);
+        employer.add(eList);
 
         this.add(employer);
         System.out.println("x");
@@ -72,18 +78,66 @@ public class InsightPanel extends JPanel {
     private void setupPosition() {
         position = new JPanel();
         position.setLayout(new FlowLayout());
-        JComboBox<String> positionList = new JComboBox<>(data.getPositions());
-        positionList.setPreferredSize(new Dimension(350,positionList.getPreferredSize().height));
+        posList = new JComboBox<>(data.getPositions());
+        posList.setPreferredSize(new Dimension(350,posList.getPreferredSize().height));
         position.add(new Label("Position: "));
-        position.add(new Checkbox());
-        position.add(positionList);
-        AutoCompletion.enable(positionList);
+        posBox = new JCheckBox();
+        position.add(posBox);
+        position.add(posList);
+        AutoCompletion.enable(posList);
         this.add(position);
         System.out.println("x");
     }
 
     private void setupSubmit() {
         Button submit = new Button("Show Results!");
+        submit.addActionListener(this);
         this.add(submit);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        showResults();
+    }
+
+    public void outputBox(SalariesT outputData) {
+        JFrame frame = new JFrame();
+        frame.setTitle("Output");
+        frame.setResizable(false);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setPreferredSize(new Dimension(800,500));
+        String[][] data = new String[outputData.size()][4];
+
+        for(int i=0; i<outputData.size(); i++) {
+            data[i] = outputData.getSalaries().get(i).toStringArray();
+        }
+
+
+        // Column Names
+        String[] columnNames = { "Sector", "Employer", "Job", "Salary" };
+
+        //frame.add(t);
+        JTable j = new JTable(data, columnNames);
+        j.setBounds(30, 40, 200, 300);
+
+        // adding it to JScrollPane
+        JScrollPane sp = new JScrollPane(j);
+        frame.add(sp);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private void showResults() {
+        System.out.println(data.size());
+        SalariesT copy = data.copy();
+        System.out.println(copy.size());
+        System.out.println(sList.getSelectedItem());
+        if(sBox.isSelected()) {
+            copy = copy.filterSector(String.valueOf(sList.getSelectedItem()));
+        }
+        System.out.println(copy.size());
+        copy.sort();
+        outputBox(copy);
     }
 }

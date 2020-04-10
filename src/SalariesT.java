@@ -15,8 +15,6 @@ public class SalariesT {
         this.employers = employers;
         this.positions = positions;
         Arrays.sort(this.sectors);
-        Arrays.sort(this.employers);
-        Arrays.sort(this.positions);
     }
 
     public SalariesT(ArrayList<SalaryT> salaries, int year) {
@@ -70,6 +68,10 @@ public class SalariesT {
             }
         }
         return true;
+    }
+
+    public SalariesT copy() {
+        return new SalariesT(new ArrayList<SalaryT>(this.getSalaries()), this.year);
     }
 
     public SalariesT filterSalary(int low, int high) {

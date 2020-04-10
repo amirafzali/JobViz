@@ -56,6 +56,10 @@ public class SalaryT {
         return String.format("%s %s %s %s", this.sector, this.employer, this.pos, this.salary);
     }
 
+    public String[] toStringArray() {
+        return new String[] {this.sector, this.employer, this.pos, String.valueOf(this.salary)};
+    }
+
     /**
      * Checks if two SalaryT objects are equal to each other
      */
