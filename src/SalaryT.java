@@ -4,19 +4,21 @@ public class SalaryT {
     private final String pos;
     private final String employer;
     private final String sector;
-    private final String city;
     private final double salary;
     private final double benefits;
     private final int year;
+    private final String firstName;
+    private final String lastName;
 
-    public SalaryT(String sector, String name, double salary, double benefits, String employer, String position, int year, String city){
-        this.name = name;
+    public SalaryT(String sector, String firstName, String lastName, double salary, double benefits, String employer, String position, int year){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.name = this.lastName + " " + this.firstName;
         this.salary = salary;
         this.benefits = benefits;
         this.sector = sector;
         this.employer = employer;
         this.pos = position;
-        this.city = city;
         this.year = year;
     }
 
@@ -24,6 +26,13 @@ public class SalaryT {
         return this.name;
     }
 
+    public String getFirstName(){
+        return this.firstName;
+    }
+
+    public String getLastName(){
+        return this.lastName;
+    }
     public String getPosition(){
         return this.pos;
     }
@@ -34,10 +43,6 @@ public class SalaryT {
 
     public String getSector(){
         return this.sector;
-    }
-
-    public String getCity(){
-        return this.city;
     }
 
     public double getSalary(){
