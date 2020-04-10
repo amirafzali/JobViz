@@ -5,14 +5,18 @@ import src.SalariesT;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class InsightPanel extends JPanel implements ActionListener {
     private final SalariesT data;
-    private JCheckBox sBox, eBox,posBox;
+    private JCheckBox sBox, eBox, posBox, salBox;
     private JComboBox<String> sList, eList, posList;
+    private JFormattedTextField min, max;
     private final Font standardFont = new Font("serif", Font.PLAIN, 20);
 
     public InsightPanel(SalariesT data) {
@@ -25,6 +29,7 @@ public class InsightPanel extends JPanel implements ActionListener {
         setupSector();
         setupEmployer();
         setupPosition();
+        setupSalary();
         setupSubmit();
 
         repaint();
@@ -87,6 +92,31 @@ public class InsightPanel extends JPanel implements ActionListener {
         this.add(position);
     }
 
+    private void setupSalary() {
+        JPanel salary = new JPanel();
+        salary.setLayout(new FlowLayout());
+
+        NumberFormat format = NumberFormat.getIntegerInstance();
+        format.setGroupingUsed(false);
+        NumberFormatter numFormat = new NumberFormatter(format);
+        numFormat.setValueClass(Long.class);
+        numFormat.setAllowsInvalid(false);
+        min = new JFormattedTextField(numFormat);
+        min.setPreferredSize(new Dimension(100, min.getPreferredSize().height));
+        max = new JFormattedTextField(numFormat);
+        max.setPreferredSize(new Dimension(100, min.getPreferredSize().height));
+        salBox = new JCheckBox();
+        min.setValue(0);
+        max.setValue(1000000);
+        salary.add(new Label("Salary: "));
+        salary.add(salBox);
+        salary.add(new Label("Min $"));
+        salary.add(min);
+        salary.add(new Label("Max $"));
+        salary.add(max);
+        this.add(salary);
+    }
+
     private void setupSubmit() {
         Button submit = new Button("Show Results!");
         submit.addActionListener(this);
@@ -99,18 +129,12 @@ public class InsightPanel extends JPanel implements ActionListener {
     }
 
     public void outputBox(SalariesT outputData) {
-        outputBox(outputData, false);
-    }
-
-    public void outputBox(SalariesT outputData, boolean limit) {
         JFrame frame = new JFrame();
         frame.setTitle("Output");
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800,500));
-        System.out.println(limit);
-        int max = limit ? 500:outputData.size();
+        int max = outputData.size();
         String[][] data = new String[max][4];
 
         for(int i=0; i<max; i++) {
@@ -131,7 +155,6 @@ public class InsightPanel extends JPanel implements ActionListener {
     private void showResults() {
         System.out.println(data.size());
         SalariesT copy = data.copy();
-        boolean anyFilter = sBox.isSelected() || eBox.isSelected() || posBox.isSelected();
         System.out.println(copy.size());
 
         if(sBox.isSelected()) {
@@ -143,17 +166,13 @@ public class InsightPanel extends JPanel implements ActionListener {
         if(posBox.isSelected()) {
             copy = copy.filterPosition(String.valueOf(posList.getSelectedItem()));
         }
-
-        System.out.println(copy.size());
-        System.out.println("g");
-        copy.sort();
-        System.out.println("t");
-        if(!anyFilter) {
-            System.out.println("x");
-            outputBox(copy, true);
-        } else {
-            System.out.println("y");
-            outputBox(copy);
+        if(salBox.isSelected()) {
+            int l = Integer.parseInt(String.valueOf(min.getValue()));
+            int h = Integer.parseInt(String.valueOf(max.getValue()));
+            copy = copy.filterSalary(l, h);
         }
+
+        copy.sort();
+        outputBox(copy);
     }
 }
