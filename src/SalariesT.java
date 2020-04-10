@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class SalariesT {
     private final ArrayList<SalaryT> s;
@@ -13,6 +14,9 @@ public class SalariesT {
         this.sectors = sectors;
         this.employers = employers;
         this.positions = positions;
+        Arrays.sort(this.sectors);
+        Arrays.sort(this.employers);
+        Arrays.sort(this.positions);
     }
 
     public SalariesT(ArrayList<SalaryT> salaries, int year) {

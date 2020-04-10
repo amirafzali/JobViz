@@ -9,8 +9,9 @@ public class GUITest {
     private final JFrame frame;
     private JPanel modePage;
     private final Font standardFont = new Font("serif", Font.PLAIN, 20);
+    private SalariesT mainData;
 
-    public GUITest() {
+    public GUITest(SalariesT main) {
         frame = new JFrame();
         frame.setTitle("JobViz");
         frame.setResizable(false);
@@ -18,11 +19,15 @@ public class GUITest {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(500,500));
         frame.setLayout(new CardLayout());
-        frame.pack();
         frame.setVisible(true);
 
-        setupModeSelection();
-        addModeSelection();
+        mainData = main;
+
+        frame.add(new InsightPanel(mainData));
+
+        frame.pack();
+        //setupModeSelection();
+        //addModeSelection();
     }
 
     private void addModeSelection() {
