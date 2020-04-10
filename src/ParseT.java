@@ -8,22 +8,17 @@ import java.util.Scanner;
 
 public class ParseT {
 
-    /*
-        this.name = name;
-        this.sal = salary;
-        this.sect = sector;
-        this.employer = employer;
-        this.pos = position;
-        this.city = city;
-        this.year = year;
-     */
-
     private SalariesT allSalaries;
-    public static void main(String[] args) throws Exception {
-        new ParseT("data/data.csv");
+
+    public SalariesT getAllSalaries() {
+        return allSalaries;
     }
 
     public ParseT(String fileName) throws Exception {
+        parseFile(fileName);
+    }
+
+    public void parseFile(String fileName) throws Exception {
         Scanner scanner = new Scanner(new File(fileName));
         ArrayList<SalaryT> allRows = new ArrayList<>();
         while (scanner.hasNext()) {
@@ -36,7 +31,7 @@ public class ParseT {
         scanner.close();
         if(allRows.size() == 0) throw new Exception("Empty data");
 
-
+        allSalaries = new SalariesT(allRows, allRows.get(0).getYear());
     }
 
     public static ArrayList<String> parseLine(String line) {
@@ -51,7 +46,6 @@ public class ParseT {
             return result;
 
         char[] chars = line.toCharArray();
-
         for (char c : chars) {
             if(c==quoteDelim) {
                 inQuotes = !inQuotes;
@@ -77,5 +71,4 @@ public class ParseT {
         result.add(currrent.toString());
         return result;
     }
-
 }

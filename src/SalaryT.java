@@ -76,11 +76,7 @@ public class SalaryT {
 
     /**
      * Computes a hashCode for a SalaryT object.
-<<<<<<< HEAD
-     * A collision will occur if two people have the same name, employer and salary.
-=======
      * A collision will occur if two people have the same name, employer and benefits.
->>>>>>> 821ee6f5465268434a6f78d1ce139e56d690205f
      */
     @Override
     public int hashCode(){
