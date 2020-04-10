@@ -76,13 +76,13 @@ public class SalaryT {
 
     /**
      * Computes a hashCode for a SalaryT object.
-     * A collision will occur if two people have the same name, employer and salary.
+     * A collision will occur if two people have the same name, employer and benefits.
      */
     @Override
     public int hashCode(){
         int result = this.name.hashCode();
         result += 31 * (int) Double.hashCode(this.salary);
-        result += 31 * this.employer.hashCode();
+        result += 31 * (int) Double.hashCode(this.benefits);
         return result;
     }
 }
