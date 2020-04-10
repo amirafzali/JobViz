@@ -3,8 +3,8 @@ package src;
 import java.util.ArrayList;
 
 public class SalariesT {
-    private ArrayList<SalaryT> s;
-    private int year;
+    private final ArrayList<SalaryT> s;
+    private final int year;
 
     public SalariesT(ArrayList<SalaryT> salaries, int year) {
         this.s = salaries;
