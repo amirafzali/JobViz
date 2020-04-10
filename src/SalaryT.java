@@ -81,8 +81,7 @@ public class SalaryT {
     @Override
     public int hashCode(){
         int result = this.name.hashCode();
-        Double temp = this.salary;
-        result *= 31 * (int) temp.hashCode();
+        result *= 31 * (int) Double.hashCode(this.salary);
         result *= 31 * this.employer.hashCode();
         return result;
     }
