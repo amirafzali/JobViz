@@ -94,6 +94,26 @@ public class SalariesT {
         return salaries;
     }
 
+    public SalariesT filterEmployer(String name) {
+        SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
+        for (SalaryT e: this.s) {
+            if (e.getEmployer().equals(name)) {
+                salaries.add(e);
+            }
+        }
+        return salaries;
+    }
+
+    public SalariesT filterPosition(String name) {
+        SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
+        for (SalaryT e: this.s) {
+            if (e.getPosition().equals(name)) {
+                salaries.add(e);
+            }
+        }
+        return salaries;
+    }
+
     public String[] getSectors() {
         return sectors;
     }
