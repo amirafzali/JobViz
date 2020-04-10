@@ -54,10 +54,7 @@ public class SalaryT {
         if (this == object) 
             return true;
 
-        if (object == null) 
-            return false;
-
-        if (this.getClass() != object.getClass())
+        if (object == null || this.getClass() != object.getClass())
             return false;
 
         SalaryT that = (SalaryT) object;
