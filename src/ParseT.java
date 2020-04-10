@@ -1,8 +1,6 @@
 package src;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,7 +19,7 @@ public class ParseT {
     public void parseFile(String fileName) throws Exception {
         Scanner scanner = new Scanner(new File(fileName));
         ArrayList<SalaryT> allRows = new ArrayList<>();
-        while (scanner.hasNext()) {
+        while(scanner.hasNext()) {
             ArrayList<String> line = parseLine(scanner.nextLine());
             String name = line.get(1) + " " + line.get(2);
             double salary = Double.parseDouble(line.get(3)), benefits = Double.parseDouble(line.get(4));
@@ -42,12 +40,12 @@ public class ParseT {
         StringBuilder currrent = new StringBuilder();
         ArrayList<String> result = new ArrayList<>();
 
-        if (line == null || line.length() == 0)
+        if(line == null || line.length() == 0)
             return result;
 
         char[] chars = line.toCharArray();
-        for (char c : chars) {
-            if(c==quoteDelim) {
+        for(char c:chars) {
+            if(c == quoteDelim) {
                 inQuotes = !inQuotes;
             }
             if (inQuotes) {

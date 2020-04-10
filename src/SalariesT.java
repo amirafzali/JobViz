@@ -11,6 +11,10 @@ public class SalariesT {
         this.year = year;
     }
 
+    public int size() {
+        return this.s.size();
+    }
+
     public ArrayList<SalaryT> getSalaries() {
         return this.s;
     }
