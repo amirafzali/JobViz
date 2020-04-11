@@ -1,4 +1,6 @@
 package src;
+import exceptions.InvalidDataLineException;
+
 public class SalaryT {
     private final String name;
     private final String pos;
@@ -46,14 +48,17 @@ public class SalaryT {
     }
 
     public double getSalary(){
+    	if (this.salary < 100000) throw new InvalidDataLineException();
         return this.salary;
     }
 
     public int getYear(){
+    	if (this.year < 0) throw new InvalidDataLineException();
         return this.year;
     }
 
     public double getBenefits() {
+    	if (this.benefits < 0) throw new InvalidDataLineException();
         return benefits;
     }
 

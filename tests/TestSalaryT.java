@@ -1,6 +1,9 @@
 package tests;
 
 import org.junit.*;
+
+import exceptions.InvalidDataLineException;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -58,7 +61,7 @@ public class TestSalaryT {
     	
     	sa1 = 111442.39; 
     	sa2 = 10; 
-    	sa3 = 105000.812479;
+    	sa3 = 99999.812479;
     	sa4 = 524012.64;
     	sa5 = 0.00;
     	sa6 = -137412.12;
@@ -87,7 +90,47 @@ public class TestSalaryT {
 
     @After
     public void tearDown(){
-
+    	fn1 = null; 
+    	fn2 = null; 
+    	fn3 = null;
+    	fn4 = null;
+    	fn5 = null;
+    	fn6 = null;
+    	
+    	ln1 = null; 
+    	ln2 = null;
+    	ln3 = null;
+    	ln4 = null;
+    	ln5 = null;
+    	ln6 = null;
+    	
+    	p1 = null; 
+    	p2 = null; 
+    	p3 = null;
+    	p4 = null;
+    	p5 = null;
+    	p6 = null;
+    	
+    	e1 = null; 
+    	e2 = null; 
+    	e3 = null;
+    	e4 = null;
+    	e5 = null;
+    	e6 = null;
+    	
+    	se1 = null; 
+    	se2 = null; 
+    	se3 = null;
+    	se4 = null;
+    	se5 = null;
+    	se6 = null;
+    	    	
+        s1 = null;
+        s2 = null;
+        s3 = null;
+        s4 = null;
+        s5 = null;
+        s6 = null;
     }
 
     @Test (expected = NullPointerException.class)
@@ -135,7 +178,39 @@ public class TestSalaryT {
     }
     
     @Test
-    public void testRemainingStringGetters() {
-    	
+    public void testRemainingStringGetters(){
+    	assertTrue(s1.getPosition().contentEquals("Professor"));
+    	assertTrue(s3.getEmployer().contentEquals(",1%6^)(1 >/>,., +|~`= 41"));
+    	assertTrue(s5.getSector().contentEquals("Municipalities & Services"));
+    }
+    
+    @Test (expected = InvalidDataLineException.class)
+    public void testSalary(){
+    	assertTrue(s1.getSalary() == 111442.39);
+    	try {
+    		assertTrue(s3.getSalary() == 99999.812479);
+    	} catch (InvalidDataLineException e1) {
+    		try {
+    			assertTrue(s5.getSalary() == 0.00);
+    		} catch (InvalidDataLineException e2) {
+    			assertTrue(s6.getSalary() == -137412.12);
+    		}
+    	}
+    }
+    
+    @Test (expected = InvalidDataLineException.class)
+    public void testBenefits(){
+    	assertTrue(s1.getBenefits() == 68.16);
+    	assertTrue(s3.getBenefits() == 423.014125);
+    	assertTrue(s5.getSalary() == 0.00);
+    	assertTrue(s6.getSalary() == -749290.42);
+    }
+    
+    @Test (expected = InvalidDataLineException.class)
+    public void testYear(){
+    	assertTrue(s1.getYear() == 2019);
+    	assertTrue(s3.getYear() == 14214);
+    	assertTrue(s5.getYear() == 0.00);
+    	assertTrue(s6.getYear() == -237918);
     }
 }
