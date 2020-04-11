@@ -133,4 +133,6 @@ public class TestSalaryT {
     	assertTrue(s6.getLastName() == null);
     	assertTrue(s6.getLastName().equals(null));  	
     }
+    
+    
 }
