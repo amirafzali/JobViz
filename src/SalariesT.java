@@ -117,6 +117,15 @@ public class SalariesT extends SortT{
         return salaries;
     }
 
+    public double positionMedian(String position) {
+        double median = 0.0;
+        for (SalaryT e: this.filterPosition(position).getSalaries()) {
+            median += e.getSalary();
+        }
+        median = median/this.size();
+        return median;
+    }
+
     public String[] getSectors() {
         return sectors;
     }
