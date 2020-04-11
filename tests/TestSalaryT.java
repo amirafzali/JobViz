@@ -311,6 +311,10 @@ public class TestSalaryT {
     		}
     	}
     	
+    	//Different objects with same fields give same hash code
+    	SalaryT tempS1 = new SalaryT(se1, fn1, ln1, sa1, b1, e1, p1, y1);
+    	assertTrue(s1.hashCode() == tempS1.hashCode());
+    	
     	//Test for null values
     	assertFalse(s6.hashCode() == s6.hashCode());
     }
