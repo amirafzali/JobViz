@@ -4,23 +4,24 @@ import lib.AutoCompletion;
 import src.SalariesT;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.Border;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
-import java.util.Locale;
 
-public class InsightPanel extends JPanel implements ActionListener {
+public class InsightPanel extends JPanel {
     private final SalariesT data;
     private JCheckBox sBox, eBox, posBox, salBox;
     private JComboBox<String> sList, eList, posList;
     private JFormattedTextField min, max;
+    private AppFrame main;
     private final Font standardFont = new Font("serif", Font.PLAIN, 20);
 
-    public InsightPanel(SalariesT data) {
+    public InsightPanel(SalariesT data, AppFrame main) {
         this.data = data;
+        this.main = main;
         setFocusable(true);
         setVisible(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -42,7 +43,7 @@ public class InsightPanel extends JPanel implements ActionListener {
         h1.setAlignment(Label.CENTER);
         h1.setFont(standardFont.deriveFont(30f));
         Label p1 = new Label("Please select your filtered categories.");
-        Label p2 = new Label("If nothing is selected, then the top 500 results are shown.");
+        Label p2 = new Label("If nothing is selected, then all data is shown,");
         p1.setAlignment(Label.CENTER);
         p2.setAlignment(Label.CENTER);
         header.add(h1);
@@ -118,14 +119,32 @@ public class InsightPanel extends JPanel implements ActionListener {
     }
 
     private void setupSubmit() {
-        Button submit = new Button("Show Results!");
-        submit.addActionListener(this);
-        this.add(submit);
-    }
+        JPanel buttonRow = new JPanel();
+        JButton submit = new JButton("Show Results!");
+        JButton back = new JButton("Go back");
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        showResults();
+        back.setBorder(BorderFactory.createLineBorder(new Color(130,0,0)));
+        submit.setBorder(BorderFactory.createLineBorder(new Color(0,130,0)));
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showResults();
+            }
+        });
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.goToMenu();
+            }
+        });
+        submit.setPreferredSize(new Dimension(125,40));
+        back.setPreferredSize(new Dimension(125,40));
+        submit.setFont(standardFont.deriveFont(18f));
+        back.setFont(standardFont.deriveFont(18f));
+        buttonRow.add(submit);
+        buttonRow.add(back);
+
+        this.add(buttonRow);
     }
 
     public void outputBox(SalariesT outputData) {
@@ -172,6 +191,7 @@ public class InsightPanel extends JPanel implements ActionListener {
             copy = copy.filterSalary(l, h);
         }
 
+        copy.sort(true);
         outputBox(copy);
     }
 }
