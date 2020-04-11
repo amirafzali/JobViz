@@ -191,7 +191,7 @@ public class InsightPanel extends JPanel {
             copy = copy.filterSalary(l, h);
         }
 
-        copy.sort(true);
+        //copy.sort(true);
         outputBox(copy);
     }
 }
