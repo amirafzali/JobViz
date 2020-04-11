@@ -7,6 +7,7 @@ import exceptions.InvalidDataLineException;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import src.SalaryT;
 
@@ -227,5 +228,74 @@ public class TestSalaryT {
     	
     	assertTrue(s6.toString().equals(null + " " + null + " " + null + " " + sa6));
     	assertTrue(s6.toString().contentEquals("null null null " + sa6));
+    }
+    
+    @Test
+    public void testToStringArr() {
+    	//s1 tests (normal case)
+    	String[] s1Arr = new String[] {s1.getSector(), s1.getEmployer(), s1.getPosition(), String.valueOf(s1.getSalary())};
+    	//All strings are equal
+    	assertTrue(s1Arr[0].equals(s1.toStringArray()[0]));
+    	assertTrue(s1Arr[1].equals(s1.toStringArray()[1]));
+    	assertTrue(s1Arr[2].equals(s1.toStringArray()[2]));
+    	assertTrue(s1Arr[3].equals(s1.toStringArray()[3]));
+    	//Same data but not the same array
+    	assertTrue(Arrays.equals(s1Arr, s1.toStringArray()));
+    	assertFalse(s1Arr == s1.toStringArray());
+    	
+    	//s4 tests (empty string case)
+    	String[] s4Arr = new String[] {s4.getSector(), s4.getEmployer(), s4.getPosition(), String.valueOf(s4.getSalary())};
+    	//All strings are equal
+    	assertTrue(s4Arr[0].equals(s4.toStringArray()[0]));
+    	assertTrue(s4Arr[1].equals(s4.toStringArray()[1]));
+    	assertTrue(s4Arr[2].equals(s4.toStringArray()[2]));
+    	assertTrue(s4Arr[3].equals(s4.toStringArray()[3]));
+    	//Same data but not the same array
+    	assertTrue(Arrays.equals(s4Arr, s4.toStringArray()));
+    	assertFalse(s4Arr == s4.toStringArray());
+    	
+    	//s6 tests (null object case)
+    	String[] s6Arr = new String[] {s6.getSector(), s6.getEmployer(), s6.getPosition(), String.valueOf(sa6)};
+    	//Testing null values
+    	assertTrue(s6Arr[0] == s6.toStringArray()[0]);
+    	assertTrue(s6Arr[1] == s6.toStringArray()[1]);
+    	assertTrue(s6Arr[2] == s6.toStringArray()[2]);
+    	//Non-null value
+    	assertTrue(s6Arr[3].equals(s6.toStringArray()[3]));
+    	assertFalse(s6Arr[3] == s6.toStringArray()[3]);
+    	//Same data but not the same array
+    	assertTrue(Arrays.equals(s6Arr, s6.toStringArray()));
+    	assertFalse(s6Arr == s6.toStringArray());
+    }
+    
+    @Test (expected = NullPointerException.class)
+    public void testEquals() {
+    	//s1 tests
+    	//reflexive
+    	assertTrue(s1.equals(s1));
+    	//transitive
+    	SalaryT tempS1 = new SalaryT(se1, fn1, ln1, sa1, b1, e1, p1, y1);
+    	SalaryT tempS2 = new SalaryT(se2, fn2, ln2, sa2, b2, e2, p2, y2);
+    	if (tempS1.equals(s1))
+    		assertTrue(s1.equals(tempS1));
+    	if (tempS2.equals(s1)) {
+    		assertTrue(s1.equals(tempS2));
+    	}
+    	//non-null value
+    	assertFalse(s1.equals(null));
+    	
+    	//s6 tests
+    	assertTrue(s6.equals(s6));
+    	//null fields but SalaryT object is not null
+    	assertFalse(s6.equals(null));
+    	//objects not equal
+    	assertFalse(s6.equals(s5));
+    	assertFalse(s5.equals(s6));
+    	//Only one field difference not equal
+    	assertFalse(s3.equals(new SalaryT(se2, fn3, ln3, sa3, b3, e3, p3, y3)));
+    	
+    	//Equality of null object throws exception
+    	s1 = null;
+    	assertTrue(s1.equals(s1));
     }
 }
