@@ -122,7 +122,7 @@ public class SalariesT extends SortT{
         for (SalaryT e: this.filterPosition(position).getSalaries()) {
             median += e.getSalary();
         }
-        median = median/this.size();
+        median = median/this.filterPosition(position).getSalaries().size();
         return median;
     }
 

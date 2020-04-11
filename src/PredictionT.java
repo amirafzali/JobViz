@@ -18,7 +18,7 @@ public class PredictionT {
         }
         if (median.size() >= 2) {
             for (int i = 1; i < median.size(); i++) {
-                change.add((median.get(i-1) + median.get(i))/median.get(i-1));
+                change.add(median.get(i)/median.get(i - 1));
             }
         }
         return change;
