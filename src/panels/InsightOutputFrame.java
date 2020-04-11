@@ -27,7 +27,7 @@ public class InsightOutputFrame extends JFrame {
         setVisible(true);
     }
 
-    public void setupTablePane() {
+    private void setupTablePane() {
         int max = data.size();
         String[][] rows = new String[max][4];
 
@@ -46,7 +46,7 @@ public class InsightOutputFrame extends JFrame {
         tablePane.add(sp);
     }
 
-    public void refresh() {
+    private void refresh() {
         getContentPane().removeAll();
 
         setupTablePane();
@@ -63,7 +63,7 @@ public class InsightOutputFrame extends JFrame {
         repaint();
     }
 
-    public void setupButtons() {
+    private void setupButtons() {
         buttonPanel = new JPanel();
         Button s1 = new Button("Sort Sector"), s2 = new Button("Sort Employer"), s3 = new Button("Sort Job"), s4 = new Button("Sort Salary");
         s1.setName("sectorsort");

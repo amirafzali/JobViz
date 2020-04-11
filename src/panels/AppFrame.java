@@ -46,7 +46,7 @@ public class AppFrame extends JFrame {
         refresh(insight);
     }
 
-    public void refresh(JPanel panel) {
+    private void refresh(JPanel panel) {
         getContentPane().removeAll();
         add(panel);
         revalidate();

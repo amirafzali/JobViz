@@ -9,6 +9,16 @@ public class PredictionT {
 		this.s = salaries;
 	}
 
+	public ArrayList<Double> predict(String position) {
+		ArrayList<Double> trend = this.changePerYear(position);
+		double rateOfChange = ((trend.get(trend.size() - 1) - trend.get(trend.size() - 2)) + trend.get(trend.size() - 1));
+		double salary = this.s.get(this.s.size() - 1).positionMean(position) * rateOfChange;
+		ArrayList<Double> prediction = new ArrayList<>();
+		prediction.add(salary);
+		prediction.add(rateOfChange);
+		return prediction;
+	}
+
 	private ArrayList<Double> changePerYear(String position) {
 		ArrayList<Double> median = new ArrayList<>();
 		ArrayList<Double> change = new ArrayList<>();
@@ -22,14 +32,4 @@ public class PredictionT {
 		}
 		return change;
 	}
-
-    public ArrayList<Double> predict(String position) {
-        ArrayList<Double> trend = this.changePerYear(position);
-        double rateOfChange = ((trend.get(trend.size() - 1) - trend.get(trend.size() - 2)) + trend.get(trend.size() - 1));
-        double salary = this.s.get(this.s.size() - 1).positionMean(position) * rateOfChange;
-        ArrayList<Double> prediction = new ArrayList<>();
-        prediction.add(salary);
-        prediction.add(rateOfChange);
-        return prediction;
-    }
 }

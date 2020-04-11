@@ -48,22 +48,22 @@ public class ParseT {
                         uniqueEmployers.toArray(new String[0]), uniquePositions.toArray(new String[0]));
     }
 
+    public SalariesT getAllSalaries() {
+        return allSalaries;
+    }
+
     private void setUniques(ArrayList<String> line) {
         uniqueSectors.add(line.get(0));
         uniqueEmployers.add(line.get(5));
         uniquePositions.add(line.get(6));
     }
 
-    public SalariesT getAllSalaries() {
-        return allSalaries;
-    }
-
-    public static ArrayList<String> parseLine(String line) {
+    private static ArrayList<String> parseLine(String line) {
         char commaDelim = ',';
         char quoteDelim = '"';
         boolean inQuotes = false;
 
-        StringBuilder currrent = new StringBuilder();
+        StringBuilder current = new StringBuilder();
         ArrayList<String> result = new ArrayList<>();
 
         if(line == null || line.length() == 0)
@@ -76,19 +76,19 @@ public class ParseT {
                 continue;
             }
             if (inQuotes) {
-                currrent.append(c);
+                current.append(c);
             } else {
                 if (c == commaDelim) {
-                    result.add(currrent.toString());
-                    currrent = new StringBuilder();
+                    result.add(current.toString());
+                    current = new StringBuilder();
                 } else if (c == '\n') {
                     break;
                 } else {
-                    currrent.append(c);
+                    current.append(c);
                 }
             }
         }
-        result.add(currrent.toString());
+        result.add(current.toString());
         return result;
     }
 }
