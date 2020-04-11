@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="@types/body-parser" />
+  <library name="@types/express" />
+  <library name="@types/express-serve-static-core" />
+  <library name="@types/express-session" />
+  <library name="@types/mongoose" />
+  <library name="@types/node" />
+  <library name="@types/passport" />
+  <library name="@types/passport-local" />
+  <library name="@types/react" />
+  <library name="@types/serve-static" />
+</eclipse-userlibraries>
+
