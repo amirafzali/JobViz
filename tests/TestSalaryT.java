@@ -68,7 +68,7 @@ public class TestSalaryT {
     	sa6 = -137412.12;
     	
     	b1 = 68.16;	
-    	b2 = 10; 
+    	b2 = 10.0; 
     	b3 = 423.014125;
     	b4 = 39.48;
     	b5 = 0.0000;
@@ -297,5 +297,21 @@ public class TestSalaryT {
     	//Equality of null object throws exception
     	s1 = null;
     	assertTrue(s1.equals(s1));
+    }
+    
+    @Test (expected = NullPointerException.class)
+    public void testHashCode() {
+    	//Tests for non-null values
+    	SalaryT[] list = {s1, s2, s3, s4, s5};
+    	for (int i = 0; i < list.length; i++) {
+    		assertTrue(list[i].hashCode() == list[i].hashCode());
+    		for (int j = 0; j < list.length; j++) {
+    			if (i != j)
+    				assertTrue(list[i].hashCode() != list[j].hashCode());
+    		}
+    	}
+    	
+    	//Test for null values
+    	assertFalse(s6.hashCode() == s6.hashCode());
     }
 }
