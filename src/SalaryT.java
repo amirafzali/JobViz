@@ -3,9 +3,7 @@ package src;
 import exceptions.InvalidDataLineException;
 
 /**
- * Blah blah blah
- * 
- * @author jarrodcolwell
+ * A class to store a line of information from the Ontario Sunshine List
  *
  */
 public class SalaryT {
