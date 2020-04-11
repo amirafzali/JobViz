@@ -6,12 +6,11 @@ import java.util.Comparator;
 
 public class SortT {
 
-    class sortBySalary implements Comparator<SalaryT> {
-
+    static class sortBySalary implements Comparator<SalaryT> {
         @Override
         public int compare(SalaryT o1, SalaryT o2) {
             if (o1.getSalary() > o2.getSalary()) {
-                return 1;
+                return -1;
             } else if (o1.getSalary() < o2.getSalary()) {
                 return 1;
             }
@@ -19,31 +18,28 @@ public class SortT {
         }
     }
 
-    class sortBySector implements Comparator<SalaryT> {
-
+    static class sortBySector implements Comparator<SalaryT> {
         @Override
         public int compare(SalaryT o1, SalaryT o2) {
             return o1.getSector().compareTo(o2.getSector());
         }
     }
 
-    class sortByPosition implements Comparator<SalaryT> {
-
+    static class sortByPosition implements Comparator<SalaryT> {
         @Override
         public int compare(SalaryT o1, SalaryT o2) {
             return o1.getPosition().compareTo(o2.getPosition());
         }
     }
 
-    class sortByEmployer implements Comparator<SalaryT> {
-
+    static class sortByEmployer implements Comparator<SalaryT> {
         @Override
         public int compare(SalaryT o1, SalaryT o2) {
             return o1.getEmployer().compareTo(o2.getEmployer());
         }
     }
 
-    private void merge(ArrayList<SalaryT> array, int l, int m, int h, boolean ascending, Comparator c) {
+    private void merge(ArrayList<SalaryT> array, int l, int m, int h, boolean ascending, Comparator<SalaryT> c) {
         int l1 = m - l + 1;
         int l2 = h - m;
         ArrayList<SalaryT> leftArray = new ArrayList<>(l1);
@@ -89,7 +85,7 @@ public class SortT {
         }
     }
 
-    public void mergeSort(ArrayList<SalaryT> array, int l, int h, boolean ascending, Comparator c) {
+    public void mergeSort(ArrayList<SalaryT> array, int l, int h, boolean ascending, Comparator<SalaryT> c) {
         if (l < h) {
             int m = (l + h)/2;
             mergeSort(array, l, m, ascending, c);
