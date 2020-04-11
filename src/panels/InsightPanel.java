@@ -4,19 +4,24 @@ import lib.AutoCompletion;
 import src.SalariesT;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
+import javax.swing.border.Border;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 
-public class InsightPanel extends JPanel implements ActionListener {
+public class InsightPanel extends JPanel {
     private final SalariesT data;
-    private JCheckBox sBox, eBox,posBox;
+    private JCheckBox sBox, eBox, posBox, salBox;
     private JComboBox<String> sList, eList, posList;
+    private JFormattedTextField min, max;
+    private AppFrame main;
     private final Font standardFont = new Font("serif", Font.PLAIN, 20);
 
-    public InsightPanel(SalariesT data) {
+    public InsightPanel(SalariesT data, AppFrame main) {
         this.data = data;
+        this.main = main;
         setFocusable(true);
         setVisible(true);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -25,6 +30,7 @@ public class InsightPanel extends JPanel implements ActionListener {
         setupSector();
         setupEmployer();
         setupPosition();
+        setupSalary();
         setupSubmit();
 
         repaint();
@@ -37,7 +43,7 @@ public class InsightPanel extends JPanel implements ActionListener {
         h1.setAlignment(Label.CENTER);
         h1.setFont(standardFont.deriveFont(30f));
         Label p1 = new Label("Please select your filtered categories.");
-        Label p2 = new Label("If nothing is selected, then the top 500 results are shown.");
+        Label p2 = new Label("If nothing is selected, then all data is shown,");
         p1.setAlignment(Label.CENTER);
         p2.setAlignment(Label.CENTER);
         header.add(h1);
@@ -87,30 +93,67 @@ public class InsightPanel extends JPanel implements ActionListener {
         this.add(position);
     }
 
-    private void setupSubmit() {
-        Button submit = new Button("Show Results!");
-        submit.addActionListener(this);
-        this.add(submit);
+    private void setupSalary() {
+        JPanel salary = new JPanel();
+        salary.setLayout(new FlowLayout());
+
+        NumberFormat format = NumberFormat.getIntegerInstance();
+        format.setGroupingUsed(false);
+        NumberFormatter numFormat = new NumberFormatter(format);
+        numFormat.setValueClass(Long.class);
+        numFormat.setAllowsInvalid(false);
+        min = new JFormattedTextField(numFormat);
+        min.setPreferredSize(new Dimension(100, min.getPreferredSize().height));
+        max = new JFormattedTextField(numFormat);
+        max.setPreferredSize(new Dimension(100, min.getPreferredSize().height));
+        salBox = new JCheckBox();
+        min.setValue(0);
+        max.setValue(1000000);
+        salary.add(new Label("Salary: "));
+        salary.add(salBox);
+        salary.add(new Label("Min $"));
+        salary.add(min);
+        salary.add(new Label("Max $"));
+        salary.add(max);
+        this.add(salary);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        showResults();
+    private void setupSubmit() {
+        JPanel buttonRow = new JPanel();
+        JButton submit = new JButton("Show Results!");
+        JButton back = new JButton("Go back");
+
+        back.setBorder(BorderFactory.createLineBorder(new Color(130,0,0)));
+        submit.setBorder(BorderFactory.createLineBorder(new Color(0,130,0)));
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showResults();
+            }
+        });
+        back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.goToMenu();
+            }
+        });
+        submit.setPreferredSize(new Dimension(125,40));
+        back.setPreferredSize(new Dimension(125,40));
+        submit.setFont(standardFont.deriveFont(18f));
+        back.setFont(standardFont.deriveFont(18f));
+        buttonRow.add(submit);
+        buttonRow.add(back);
+
+        this.add(buttonRow);
     }
 
     public void outputBox(SalariesT outputData) {
-        outputBox(outputData, false);
-    }
-
-    public void outputBox(SalariesT outputData, boolean limit) {
         JFrame frame = new JFrame();
         frame.setTitle("Output");
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800,500));
-        System.out.println(limit);
-        int max = limit ? 500:outputData.size();
+        int max = outputData.size();
         String[][] data = new String[max][4];
 
         for(int i=0; i<max; i++) {
@@ -131,7 +174,6 @@ public class InsightPanel extends JPanel implements ActionListener {
     private void showResults() {
         System.out.println(data.size());
         SalariesT copy = data.copy();
-        boolean anyFilter = sBox.isSelected() || eBox.isSelected() || posBox.isSelected();
         System.out.println(copy.size());
 
         if(sBox.isSelected()) {
@@ -143,17 +185,13 @@ public class InsightPanel extends JPanel implements ActionListener {
         if(posBox.isSelected()) {
             copy = copy.filterPosition(String.valueOf(posList.getSelectedItem()));
         }
-
-        System.out.println(copy.size());
-        System.out.println("g");
-//        copy.sort(true);
-        System.out.println("t");
-        if(!anyFilter) {
-            System.out.println("x");
-            outputBox(copy, true);
-        } else {
-            System.out.println("y");
-            outputBox(copy);
+        if(salBox.isSelected()) {
+            int l = Integer.parseInt(String.valueOf(min.getValue()));
+            int h = Integer.parseInt(String.valueOf(max.getValue()));
+            copy = copy.filterSalary(l, h);
         }
+
+        copy.sort(true);
+        outputBox(copy);
     }
 }
