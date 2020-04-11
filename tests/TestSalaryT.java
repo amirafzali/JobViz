@@ -21,14 +21,21 @@ public class TestSalaryT {
 
     @Before
     public void setUp(){
-
+    	fn1 = "Bob";
+    	ln1 = "Bob";
+    	p1 = "Bob";
+    	e1 = "Bob";
+    	se1 = "Bob";
+    	sa1 = 10.00;
+    	b1 = 11.00;
+    	y1 = 1022;
 
         s1 = new SalaryT(se1, fn1, ln1, sa1, b1, e1, p1, y1);
-        s2 = new SalaryT(se2, fn2, ln2, sa2, b2, e2, p2, y2);
-        s3 = new SalaryT(se3, fn3, ln3, sa3, b3, e3, p3, y3);
-        s4 = new SalaryT(se4, fn4, ln4, sa4, b4, e4, p4, y4);
-        s5 = new SalaryT(se5, fn5, ln5, sa5, b5, e5, p5, y5);
-        s6 = new SalaryT(se6, fn6, ln6, sa6, b6, e6, p6, y6);
+        //s2 = new SalaryT(se2, fn2, ln2, sa2, b2, e2, p2, y2);
+        //s3 = new SalaryT(se3, fn3, ln3, sa3, b3, e3, p3, y3);
+        //s4 = new SalaryT(se4, fn4, ln4, sa4, b4, e4, p4, y4);
+        //s5 = new SalaryT(se5, fn5, ln5, sa5, b5, e5, p5, y5);
+        //s6 = new SalaryT(se6, fn6, ln6, sa6, b6, e6, p6, y6);
     }
 
     @After
@@ -38,6 +45,6 @@ public class TestSalaryT {
 
     @Test
     public void testName(){
-
+    	assertTrue(s1.getFirstName().contentEquals("Bob"));
     }
 }
