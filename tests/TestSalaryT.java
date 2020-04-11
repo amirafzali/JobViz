@@ -134,7 +134,7 @@ public class TestSalaryT {
     }
 
     @Test (expected = NullPointerException.class)
-    public void testFirstName(){
+    public void testFirstName() {
     	assertTrue(s1.getFirstName().contentEquals("Sadiq"));
     	assertTrue(s1.getFirstName().equals(new String("Sadiq")));
     	assertFalse(s1.getFirstName() == new String("Sadiq"));
@@ -156,7 +156,7 @@ public class TestSalaryT {
     }
     
     @Test (expected = NullPointerException.class)
-    public void testLastName(){
+    public void testLastName() {
     	assertTrue(s1.getLastName().contentEquals("Abbas"));
     	assertTrue(s1.getLastName().equals(new String("Abbas")));
     	assertFalse(s1.getLastName() == new String("Abbas"));
@@ -178,7 +178,7 @@ public class TestSalaryT {
     }
     
     @Test
-    public void testRemainingStringGetters(){
+    public void testRemainingStringGetters() {
     	assertTrue(s1.getPosition().contentEquals("Professor"));
     	assertTrue(s3.getEmployer().contentEquals(",1%6^)(1 >/>,., +|~`= 41"));
     	assertTrue(s5.getSector().contentEquals("Municipalities & Services"));
@@ -199,7 +199,7 @@ public class TestSalaryT {
     }
     
     @Test (expected = InvalidDataLineException.class)
-    public void testBenefits(){
+    public void testBenefits() {
     	assertTrue(s1.getBenefits() == 68.16);
     	assertTrue(s3.getBenefits() == 423.014125);
     	assertTrue(s5.getSalary() == 0.00);
@@ -207,10 +207,25 @@ public class TestSalaryT {
     }
     
     @Test (expected = InvalidDataLineException.class)
-    public void testYear(){
+    public void testYear() {
     	assertTrue(s1.getYear() == 2019);
     	assertTrue(s3.getYear() == 14214);
     	assertTrue(s5.getYear() == 0.00);
     	assertTrue(s6.getYear() == -237918);
+    }
+    
+    @Test
+    public void testToString() {
+    	assertTrue(s1.toString().contentEquals(s1.getSector() + " " + s1.getEmployer() + " " + s1.getPosition() + " " + s1.getSalary()));
+    	assertTrue(s4.toString().contentEquals(s4.getSector() + " " + s4.getEmployer() + " " + s4.getPosition() + " " + s4.getSalary()));
+    	try {
+    		assertTrue(s3.toString().contentEquals(s3.getSector() + " " + s3.getEmployer() + " " + s3.getPosition() + " " + s3.getSalary()));
+    		fail("Exception did not occur");
+    	} catch (InvalidDataLineException e1) {
+    		assertTrue(s3.toString().contentEquals(s3.getSector() + " " + s3.getEmployer() + " " + s3.getPosition() + " " + sa3));
+    	}
+    	
+    	assertTrue(s6.toString().equals(null + " " + null + " " + null + " " + sa6));
+    	assertTrue(s6.toString().contentEquals("null null null " + sa6));
     }
 }
