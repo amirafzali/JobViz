@@ -89,28 +89,12 @@ public class SortT {
         }
     }
 
-    private void mergeSort(ArrayList<SalaryT> array, int l, int h, boolean ascending, Comparator c) {
+    public void mergeSort(ArrayList<SalaryT> array, int l, int h, boolean ascending, Comparator c) {
         if (l < h) {
             int m = (l + h)/2;
             mergeSort(array, l, m, ascending, c);
             mergeSort(array, m+1, h, ascending, c);
             merge(array, l, m, h, ascending, c);
         }
-    }
-
-    public void sortSalary(ArrayList<SalaryT> array, boolean ascending) {
-        mergeSort(array,0, array.size() - 1, ascending, new sortBySalary());
-    }
-
-    public void sortPosition(ArrayList<SalaryT> array, boolean ascending) {
-        mergeSort(array,0, array.size() - 1, ascending, new sortByPosition());
-    }
-
-    public void sortSector(ArrayList<SalaryT> array, boolean ascending) {
-        mergeSort(array,0, array.size() - 1, ascending, new sortBySector());
-    }
-
-    public void sortEmployer(ArrayList<SalaryT> array, boolean ascending) {
-        mergeSort(array,0, array.size() - 1, ascending, new sortByEmployer());
     }
 }

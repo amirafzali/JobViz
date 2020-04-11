@@ -3,7 +3,7 @@ package src;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SalariesT {
+public class SalariesT extends SortT{
     private final ArrayList<SalaryT> s;
     private final int year;
     private final String[] sectors, employers, positions;
@@ -28,7 +28,7 @@ public class SalariesT {
     }
 
     public int size() {
-        return this.s.size();
+        return this.getSalaries().size();
     }
 
     public ArrayList<SalaryT> getSalaries() {
@@ -36,7 +36,7 @@ public class SalariesT {
     }
 
     public SalaryT getSalary(String name) {
-        for (SalaryT e: this.s) {
+        for (SalaryT e: this.getSalaries()) {
             if (e.getName().equals(name)) {
                 return e;
             }
@@ -45,12 +45,28 @@ public class SalariesT {
     }
 
     public void add(SalaryT salary) {
-        this.s.add(salary);
+        this.getSalaries().add(salary);
+    }
+
+    public void sortSalary(boolean ascending) {
+        mergeSort(this.getSalaries(),0, this.getSalaries().size() - 1, ascending, new sortBySalary());
+    }
+
+    public void sortPosition(boolean ascending) {
+        mergeSort(this.getSalaries(),0, this.getSalaries().size() - 1, ascending, new sortByPosition());
+    }
+
+    public void sortSector(boolean ascending) {
+        mergeSort(this.getSalaries(),0, this.getSalaries().size() - 1, ascending, new sortBySector());
+    }
+
+    public void sortEmployer(boolean ascending) {
+        mergeSort(this.getSalaries(),0, this.getSalaries().size() - 1, ascending, new sortByEmployer());
     }
 
     public boolean isSorted() {
-        for (int i = 1; i < this.s.size(); i++) {
-            if (this.s.get(i - 1).getSalary() > this.s.get(i).getSalary()) {
+        for (int i = 1; i < this.size(); i++) {
+            if (this.getSalaries().get(i - 1).getSalary() > this.getSalaries().get(i).getSalary()) {
                 return false;
             }
         }
@@ -63,7 +79,7 @@ public class SalariesT {
 
     public SalariesT filterSalary(int low, int high) {
         SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
-        for (SalaryT e: this.s) {
+        for (SalaryT e: this.getSalaries()) {
             if (low < e.getSalary() && e.getSalary() < high) {
                 salaries.add(e);
             }
@@ -73,7 +89,7 @@ public class SalariesT {
 
     public SalariesT filterSector(String name) {
         SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
-        for (SalaryT e: this.s) {
+        for (SalaryT e: this.getSalaries()) {
             if (e.getSector().equals(name)) {
                 salaries.add(e);
             }
@@ -83,7 +99,7 @@ public class SalariesT {
 
     public SalariesT filterEmployer(String name) {
         SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
-        for (SalaryT e: this.s) {
+        for (SalaryT e: this.getSalaries()) {
             if (e.getEmployer().equals(name)) {
                 salaries.add(e);
             }
@@ -93,7 +109,7 @@ public class SalariesT {
 
     public SalariesT filterPosition(String name) {
         SalariesT salaries = new SalariesT(new ArrayList<SalaryT>(), this.year);
-        for (SalaryT e: this.s) {
+        for (SalaryT e: this.getSalaries()) {
             if (e.getPosition().equals(name)) {
                 salaries.add(e);
             }
