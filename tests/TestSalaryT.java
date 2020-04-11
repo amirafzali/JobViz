@@ -1,12 +1,13 @@
 package tests;
 
-import org.junit.*;
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import exceptions.InvalidDataLineException;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import src.SalaryT;
