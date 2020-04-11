@@ -134,5 +134,8 @@ public class TestSalaryT {
     	assertTrue(s6.getLastName().equals(null));  	
     }
     
-    
+    @Test
+    public void testRemainingStringGetters() {
+    	
+    }
 }
