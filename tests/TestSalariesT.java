@@ -24,7 +24,8 @@ public class TestSalariesT {
     private double[] b1, b2, b3;
     private int[] y1, y2, y3, y4;
     
-    private SalariesT ss1, ss2, ss3, ss4;
+    private SalariesT ss1, ss2, ss3, ss4, ss5, ss6;
+    private SalariesT ss1Alt, ss2Alt, ss3Alt, ss4Alt, ss5Alt, ss6Alt;
     
 	private ArrayList<SalaryT> sLst1, sLst2, sLst3, sLst4;
 	
@@ -72,10 +73,10 @@ public class TestSalariesT {
     	y2 = new int[] {2016, 2017, 2019, 2021};
     	y3 = new int[] {0, 0, 0, 0};
     	y4 = new int[] {-124, 643, 21, 201521};
-    	System.out.println(y1[0]);
+    	
         s1[0] = new SalaryT(se1[0], fn1[0], ln1[0], sa1[0], b1[0], e1[0], p1[0], y1[0]);
         s1[1] = new SalaryT(se1[1], fn1[1], ln1[1], sa1[1], b1[1], e1[1], p1[1], y1[1]);
-        //s1[2] = new SalaryT(se1[2], fn1[2], ln1[2], sa1[2], b1[2], e1[2], p1[2], y1[2]);
+        s1[2] = new SalaryT(se1[2], fn1[2], ln1[2], sa1[2], b1[2], e1[2], p1[2], y1[2]);
         s1[3] = new SalaryT(se1[3], fn1[3], ln1[3], sa1[3], b1[3], e1[3], p1[3], y1[3]);
         
         s2[0] = new SalaryT(se2[0], fn2[0], ln2[0], sa2[0], b2[0], e2[0], p2[0], y2[0]);
@@ -102,7 +103,12 @@ public class TestSalariesT {
         ss2 = new SalariesT(sLst2, y2[0], se2, e2, p2);
         ss3 = new SalariesT(sLst3, y3[0], se3, e3, p3);
         ss4 = new SalariesT(sLst4, y4[0], se4, e4, p4);
-        
+        //ss5 = new SalariesT();
+        		
+        ss1Alt = new SalariesT(sLst1, y1[0]);
+        ss2Alt = new SalariesT(sLst2, y2[0]);
+        ss3Alt = new SalariesT(sLst3, y3[0]);
+        ss4Alt = new SalariesT(sLst4, y4[0]);
 	}
 
 	@After
@@ -110,8 +116,21 @@ public class TestSalariesT {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testSize() {
+		assertTrue(ss1.size() == 4);
+		assertTrue(ss2.size() == 4);
+		assertTrue(ss3.size() == 4);
+		assertTrue(ss4.size() == 4);
+		//assertTrue(ss5.size() == 0);
+	}
+	
+	@Test
+	public void testGetSalaries() {
+		assertTrue(ss1.getSalaries().equals(sLst1));
+		assertTrue(ss2.getSalaries().equals(sLst2));
+		assertTrue(ss3.getSalaries().equals(sLst3));
+		assertTrue(ss4.getSalaries().equals(sLst4));
+		
 	}
 
 }
