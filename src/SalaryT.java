@@ -53,6 +53,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Name
+	 * 
 	 * @return String The name of the individual
 	 */
 	public String getName() {
@@ -60,6 +62,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the First Name
+	 * 
 	 * @return String The first name of the individual
 	 */
 	public String getFirstName() {
@@ -67,6 +71,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Last Name
+	 * 
 	 * @return String The last name of the individual
 	 */
 	public String getLastName() {
@@ -74,6 +80,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Position
+	 * 
 	 * @return String The name of the position
 	 */
 	public String getPosition() {
@@ -81,6 +89,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Employer
+	 * 
 	 * @return String The name of the employer
 	 */
 	public String getEmployer() {
@@ -88,6 +98,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Sector
+	 * 
 	 * @return String The name of the sector
 	 */
 	public String getSector() {
@@ -95,6 +107,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Salary
+	 * 
 	 * @return double The salary
 	 */
 	public double getSalary() {
@@ -102,6 +116,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Year
+	 * 
 	 * @return int The year
 	 */
 	public int getYear() {
@@ -110,6 +126,8 @@ public class SalaryT {
 	}
 
 	/**
+	 * Get method for the Taxable Benefits
+	 * 
 	 * @return double The taxable benefits
 	 */
 	public double getBenefits() {
