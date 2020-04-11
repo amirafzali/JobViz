@@ -209,6 +209,12 @@ public class SalariesT extends SortT {
 		return salaries;
 	}
 
+	/**
+	 * Finds the mean salary for a position
+	 * 
+	 * @param position The position for which a mean is being found
+	 * @return double The mean salary of the position
+	 */
 	public double positionMean(String position) {
 		double median = 0.0;
 		for (SalaryT e : this.filterPosition(position).getSalaries()) {
@@ -218,14 +224,29 @@ public class SalariesT extends SortT {
 		return median;
 	}
 
+	/**
+	 * Get method for the sorted sectors
+	 * 
+	 * @return String[] The sorted string array of sectors
+	 */
 	public String[] getSectors() {
 		return sectors;
 	}
 
+	/**
+	 * Get method for the sorted sectors
+	 * 
+	 * @return String[] The sorted string array of employers
+	 */
 	public String[] getEmployers() {
 		return employers;
 	}
 
+	/**
+	 * Get method for the sorted positions
+	 * 
+	 * @return String[] The sorted string array of positions
+	 */
 	public String[] getPositions() {
 		return positions;
 	}
