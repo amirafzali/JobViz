@@ -9,7 +9,7 @@ public class Application {
 
     private static void GTest() {
         try {
-            ParseT parse2019 = new ParseT("data/data.csv");
+            ParseT parse2019 = new ParseT("data/data2019.csv");
             System.out.println(parse2019.getAllSalaries().size());
             System.out.println(parse2019.getAllSalaries().getSalaries().get(0));
             AppFrame x = new AppFrame(parse2019.getAllSalaries());
