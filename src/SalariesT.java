@@ -48,65 +48,6 @@ public class SalariesT {
         this.s.add(salary);
     }
 
-    private void merge(int l, int m, int h, boolean ascending) {
-        int l1 = m - l + 1;
-        int l2 = h - m;
-        ArrayList<SalaryT> leftArray = new ArrayList<>(l1);
-        ArrayList<SalaryT> rightArray = new ArrayList<>(l2);
-        for (int i = 0; i < l1; i++) {
-            leftArray.add(this.s.get(l + i));
-        }
-        for (int i = 0; i < l2; i++) {
-            rightArray.add(this.s.get(m + i + 1));
-        }
-        int i = 0;
-        int j = 0;
-        int k = l;
-        while (i < l1 && j < l2) {
-            if (ascending) {
-                if (leftArray.get(i).getSalary() <= rightArray.get(j).getSalary()) {
-                    this.s.set(k, leftArray.get(i));
-                    i++;
-                } else if (leftArray.get(i).getSalary() > rightArray.get(j).getSalary()) {
-                    this.s.set(k, rightArray.get(j));
-                    j++;
-                }
-            } else {
-                if (leftArray.get(i).getSalary() > rightArray.get(j).getSalary()) {
-                    this.s.set(k, leftArray.get(i));
-                    i++;
-                } else if (leftArray.get(i).getSalary() <= rightArray.get(j).getSalary()) {
-                    this.s.set(k, rightArray.get(j));
-                    j++;
-                }
-            }
-            k++;
-        }
-        while (i < l1) {
-            this.s.set(k, leftArray.get(i));
-            k++;
-            i++;
-        }
-        while (j < l2) {
-            this.s.set(k, rightArray.get(j));
-            k++;
-            j++;
-        }
-    }
-
-    private void mergeSort(int l, int h, boolean ascending) {
-        if (l < h) {
-            int m = (l + h)/2;
-            mergeSort(l, m, ascending);
-            mergeSort(m+1, h, ascending);
-            merge(l, m, h, ascending);
-        }
-    }
-
-    public void sort(boolean ascending) {
-        mergeSort(0, this.s.size() - 1, ascending);
-    }
-
     public boolean isSorted() {
         for (int i = 1; i < this.s.size(); i++) {
             if (this.s.get(i - 1).getSalary() > this.s.get(i).getSalary()) {
