@@ -166,7 +166,7 @@ public class InsightPanel extends JPanel {
 
         JScrollPane sp = new JScrollPane(j);
 
-        Button s1 = new Button("Sort ")
+        Button s1 = new Button("Sort ");
 
         frame.add(sp);
         frame.pack();
