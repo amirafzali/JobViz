@@ -9,11 +9,13 @@ public class SalariesT extends SortT {
 	private final String[] sectors, employers, positions;
 
 	/**
-	 * @param salaries
-	 * @param year
-	 * @param sectors
-	 * @param employers
-	 * @param positions
+	 * Constructor for SalariesT
+	 * 
+	 * @param salaries  The salaries being stored
+	 * @param year      The year the salaries are from
+	 * @param sectors   The array of sectors present in the salaries
+	 * @param employers The array of employers present in the salaries
+	 * @param positions The array of positions present in the salaries
 	 */
 	public SalariesT(ArrayList<SalaryT> salaries, int year, String[] sectors, String[] employers, String[] positions) {
 		this.s = salaries;
@@ -27,8 +29,10 @@ public class SalariesT extends SortT {
 	}
 
 	/**
-	 * @param salaries
-	 * @param year
+	 * Constructor for SalariesT
+	 * 
+	 * @param salaries The salaries being stored
+	 * @param year     The year the salaries are from
 	 */
 	public SalariesT(ArrayList<SalaryT> salaries, int year) {
 		this.s = salaries;
