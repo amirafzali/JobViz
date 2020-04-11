@@ -147,30 +147,7 @@ public class InsightPanel extends JPanel {
     }
 
     public void outputBox(SalariesT outputData) {
-        JFrame frame = new JFrame();
-        frame.setTitle("Output");
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
-        frame.setPreferredSize(new Dimension(800,600));
-        int max = outputData.size();
-        String[][] data = new String[max][4];
-
-        for(int i=0; i<max; i++) {
-            data[i] = outputData.getSalaries().get(i).toStringArray();
-        }
-
-        String[] columnNames = { "Sector", "Employer", "Job", "Salary" };
-
-        JTable j = new JTable(data, columnNames);
-        j.setBounds(30, 40, 200, 300);
-
-        JScrollPane sp = new JScrollPane(j);
-
-        Button s1 = new Button("Sort ");
-
-        frame.add(sp);
-        frame.pack();
-        frame.setVisible(true);
+        new InsightOutputFrame(outputData);
     }
 
     private void showResults() {
