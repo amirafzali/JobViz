@@ -1,6 +1,11 @@
 package src;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -19,11 +24,13 @@ public class ParseT {
     }
 
     public void parseFile(String fileName) throws Exception {
-        Scanner scanner = new Scanner(new File(fileName));
+		
+    	Reader reader = new InputStreamReader(new FileInputStream(fileName), "utf-8");
+    	BufferedReader scanner = new BufferedReader(reader);
         ArrayList<SalaryT> allRows = new ArrayList<>();
-        scanner.nextLine();
-        while(scanner.hasNext()) {
-            ArrayList<String> line = parseLine(scanner.nextLine());
+        String r = scanner.readLine();
+        while((r = scanner.readLine()) != null) {
+            ArrayList<String> line = parseLine(r);
             setUniques(line);
             String formatSal = String.join("",line.get(3).substring(1).split(","));
             String formatBenefits = String.join("",line.get(4).substring(1).split(","));
