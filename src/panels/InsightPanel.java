@@ -62,9 +62,8 @@ public class InsightPanel extends JPanel {
         sBox = new JCheckBox();
         sector.add(sBox);
         sector.add(sList);
-
+        AutoCompletion.enable(sList);
         this.add(sector);
-        System.out.println("x");
     }
 
     private void setupEmployer() {
@@ -76,7 +75,7 @@ public class InsightPanel extends JPanel {
         eBox = new JCheckBox();
         employer.add(eBox);
         employer.add(eList);
-
+        AutoCompletion.enable(eList);
         this.add(employer);
     }
 
@@ -152,7 +151,7 @@ public class InsightPanel extends JPanel {
         frame.setTitle("Output");
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
-        frame.setPreferredSize(new Dimension(800,500));
+        frame.setPreferredSize(new Dimension(800,600));
         int max = outputData.size();
         String[][] data = new String[max][4];
 
@@ -166,6 +165,9 @@ public class InsightPanel extends JPanel {
         j.setBounds(30, 40, 200, 300);
 
         JScrollPane sp = new JScrollPane(j);
+
+        Button s1 = new Button("Sort ")
+
         frame.add(sp);
         frame.pack();
         frame.setVisible(true);

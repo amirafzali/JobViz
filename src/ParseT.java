@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -25,7 +26,7 @@ public class ParseT {
 
     public void parseFile(String fileName) throws Exception {
 		
-    	Reader reader = new InputStreamReader(new FileInputStream(fileName), "utf-8");
+    	Reader reader = new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8);
     	BufferedReader scanner = new BufferedReader(reader);
         ArrayList<SalaryT> allRows = new ArrayList<>();
         String r = scanner.readLine();
