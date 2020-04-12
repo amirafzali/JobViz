@@ -10,15 +10,6 @@ import java.util.*;
 
 public class GraphT {
     private static final Graph.Salaries[] GRAPH = {
-            new Graph.Salaries("a", "b", 7),
-            new Graph.Salaries("a", "c", 9),
-            new Graph.Salaries("a", "f", 14),
-            new Graph.Salaries("b", "c", 10),
-            new Graph.Salaries("b", "d", 15),
-            new Graph.Salaries("c", "d", 11),
-            new Graph.Salaries("c", "f", 2),
-            new Graph.Salaries("d", "e", 6),
-            new Graph.Salaries("e", "f", 9),
     };
     private static final String START = "a";
     private static final String END = "e";
