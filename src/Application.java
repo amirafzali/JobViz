@@ -21,16 +21,13 @@ public class Application {
             all.add(parse2018.getAllSalaries());
             all.add(parse2019.getAllSalaries());
 
-            System.out.println(new PredictionT(all).predict("Professor"));
-
-            System.out.println(parse2019.getAllSalaries().size());
-            System.out.println(parse2019.getAllSalaries().getSalaries().get(0));
-            System.out.println(parse2018.getAllSalaries().size());
-            System.out.println(parse2018.getAllSalaries().getSalaries().get(0));
-            System.out.println(parse2017.getAllSalaries().size());
-            System.out.println(parse2017.getAllSalaries().getSalaries().get(0));
-
+            System.out.println("Launching app... please wait :)");
+            System.out.println("2019 rows: "+parse2019.getAllSalaries().size());
+            System.out.println("2018 rows: "+parse2018.getAllSalaries().size());
+            System.out.println("2017 rows: "+parse2017.getAllSalaries().size());
+            System.out.println("Almost done loading...");
             new AppFrame(parse2019.getAllSalaries(), all);
+            System.out.println("Done!");
 
         } catch (Exception e) {
             e.printStackTrace();

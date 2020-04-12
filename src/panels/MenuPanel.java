@@ -28,7 +28,7 @@ public class MenuPanel extends JPanel {
         Font standardFont = new Font("serif", Font.PLAIN, 15);
         desc.setFont(standardFont.deriveFont(30f));
         descArea.add(desc);
-        descArea.add(new Label("---------------------------------------"));
+        descArea.add(new Label("-------------------------------------------"));
         descArea.add(desc3);
         descArea.add(desc2);
 
