@@ -32,7 +32,7 @@ public class SalaryT {
 	 *                                  0
 	 */
 	public SalaryT(String sector, String firstName, String lastName, double salary, double benefits, String employer,
-			String position, int year) throws InvalidDataLineException {
+			String position, int year) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.name = this.lastName + " " + this.firstName;
@@ -156,11 +156,16 @@ public class SalaryT {
 				&& this.salary == that.getSalary() && this.year == that.getYear());
 	}
 
-	@Override
-	public int hashCode() {
-		int result = this.name.hashCode();
-		result *= 31 * Double.hashCode(this.salary);
-		result *= 31 * Double.hashCode(this.benefits);
-		return result;
-	}
+	/**
+     * Computes a hashCode for a SalaryT object.
+     * A collision will occur if two people have the same name, employer and benefits.
+     */
+    @Override
+    public int hashCode(){
+    	int result = this.firstName.hashCode();
+	    result = 31 * result + this.lastName.hashCode();
+	    result = 31 * result + Double.hashCode(this.salary);
+	    result = 31 * result + Double.hashCode(this.benefits);
+	    return result & 0x7fffffff;
+    }
 }
