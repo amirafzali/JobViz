@@ -1,0 +1,12 @@
+
+
+JobViz Deployment Instructions
+-------------------------------
+
+
+How To Launch:
+
+(Refer to image HowToLaunch.
+
+Compile the program in your IDE of choice (not command line).
+The console will indicate that the program is loading.
