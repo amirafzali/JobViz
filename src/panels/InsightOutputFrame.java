@@ -7,12 +7,19 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Class for the Insight page output frame
+ */
 public class InsightOutputFrame extends JFrame {
 
     private JPanel buttonPanel, tablePane;
     private final SalariesT data;
     private boolean sector = false, employer = false, job = false, salary = false;
 
+    /**
+     * Constructor for InsightOutputFrame. Instantiates the JFrame and defines properties on the frame.
+     * @param outputData Data from which the output table is generated.
+     */
     public InsightOutputFrame(SalariesT outputData) {
         this.data = outputData;
 
@@ -27,6 +34,9 @@ public class InsightOutputFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Sets up the table panel with the SalariesT output, and adds it to the frame.
+     */
     private void setupTablePane() {
         int max = data.size();
         String[][] rows = new String[max][4];
@@ -46,6 +56,9 @@ public class InsightOutputFrame extends JFrame {
         tablePane.add(sp);
     }
 
+    /**
+     * Refreshes the table after a change in the data sorting.
+     */
     private void refresh() {
         getContentPane().removeAll();
 
@@ -63,6 +76,10 @@ public class InsightOutputFrame extends JFrame {
         repaint();
     }
 
+    /**
+     * Creates the table sorting buttons and adds their action listening logic.
+     * Adds the buttons to the frame.
+     */
     private void setupButtons() {
         buttonPanel = new JPanel();
         Button s1 = new Button("Sort Sector"), s2 = new Button("Sort Employer"), s3 = new Button("Sort Job"), s4 = new Button("Sort Salary");

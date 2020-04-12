@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Class represents the main GUI app frame
+ * Class for the main GUI frame
  */
 public class AppFrame extends JFrame {
 
