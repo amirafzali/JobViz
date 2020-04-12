@@ -13,9 +13,9 @@ public class SalariesT extends SortT {
 	 * 
 	 * @param salaries  The salaries being stored
 	 * @param year      The year the salaries are from
-	 * @param sectors   The array of sectors present in the salaries
-	 * @param employers The array of employers present in the salaries
-	 * @param positions The array of positions present in the salaries
+	 * @param sectors   The array of unique sectors present in the salaries
+	 * @param employers The array of unique employers present in the salaries
+	 * @param positions The array of unique positions present in the salaries
 	 */
 	public SalariesT(ArrayList<SalaryT> salaries, int year, String[] sectors, String[] employers, String[] positions) {
 		this.s = salaries;
@@ -229,27 +229,27 @@ public class SalariesT extends SortT {
 	}
 
 	/**
-	 * Get method for the sorted sectors
+	 * Get method for the sorted unique sectors
 	 * 
-	 * @return String[] The sorted string array of sectors
+	 * @return String[] The sorted string array of unique sectors
 	 */
 	public String[] getSectors() {
 		return sectors;
 	}
 
 	/**
-	 * Get method for the sorted sectors
+	 * Get method for the sorted unique employers
 	 * 
-	 * @return String[] The sorted string array of employers
+	 * @return String[] The sorted string array of unique employers
 	 */
 	public String[] getEmployers() {
 		return employers;
 	}
 
 	/**
-	 * Get method for the sorted positions
+	 * Get method for the sorted unique positions
 	 * 
-	 * @return String[] The sorted string array of positions
+	 * @return String[] The sorted string array of unique positions
 	 */
 	public String[] getPositions() {
 		return positions;
