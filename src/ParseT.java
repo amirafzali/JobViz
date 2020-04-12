@@ -24,7 +24,7 @@ public class ParseT {
         parseFile(fileName);
     }
 
-    public void parseFile(String fileName) throws Exception {
+    private void parseFile(String fileName) throws Exception {
 		
     	Reader reader = new InputStreamReader(new FileInputStream(fileName), StandardCharsets.UTF_8);
     	BufferedReader scanner = new BufferedReader(reader);
