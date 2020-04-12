@@ -28,19 +28,27 @@ public class MenuPanel extends JPanel {
         Font standardFont = new Font("serif", Font.PLAIN, 15);
         desc.setFont(standardFont.deriveFont(30f));
         descArea.add(desc);
-        descArea.add(new Label("-----------------------------------"));
+        descArea.add(new Label("-------------------------------------------"));
         descArea.add(desc3);
         descArea.add(desc2);
 
         JButton insightButton = new JButton("Job Insight"), predictionButton = new JButton("Salary Prediction");
-        insightButton.setPreferredSize(new Dimension(125,50));
-        predictionButton.setPreferredSize(new Dimension(125,50));
+        insightButton.setPreferredSize(new Dimension(150,50));
+        predictionButton.setPreferredSize(new Dimension(150,50));
         insightButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 main.goToInsight();
             }
         });
+
+        predictionButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                main.goToPrediction();
+            }
+        });
+
         buttonArea.add(insightButton);
         buttonArea.add(predictionButton);
         this.add(descArea);

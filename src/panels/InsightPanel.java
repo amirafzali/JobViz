@@ -17,7 +17,6 @@ public class InsightPanel extends JPanel {
     private JComboBox<String> sList, eList, posList;
     private JFormattedTextField min, max;
     private AppFrame main;
-    private final Font standardFont = new Font("serif", Font.PLAIN, 20);
 
     public InsightPanel(SalariesT data, AppFrame main) {
         this.data = data;
@@ -41,7 +40,7 @@ public class InsightPanel extends JPanel {
         header.setLayout(new BoxLayout(header, BoxLayout.PAGE_AXIS));
         Label h1 = new Label("Job Insight", SwingConstants.CENTER);
         h1.setAlignment(Label.CENTER);
-        h1.setFont(standardFont.deriveFont(30f));
+        h1.setFont(AppFrame.standardFont.deriveFont(30f));
         Label p1 = new Label("Please select your filtered categories.");
         Label p2 = new Label("If nothing is selected, then all data is shown,");
         p1.setAlignment(Label.CENTER);
@@ -138,8 +137,8 @@ public class InsightPanel extends JPanel {
         });
         submit.setPreferredSize(new Dimension(125,40));
         back.setPreferredSize(new Dimension(125,40));
-        submit.setFont(standardFont.deriveFont(18f));
-        back.setFont(standardFont.deriveFont(18f));
+        submit.setFont(AppFrame.standardFont.deriveFont(18f));
+        back.setFont(AppFrame.standardFont.deriveFont(18f));
         buttonRow.add(submit);
         buttonRow.add(back);
 
