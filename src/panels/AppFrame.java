@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class AppFrame extends JFrame {
 
+    public static final Font standardFont = new Font("serif", Font.PLAIN, 20);
     public JPanel mainMenu, insight, prediction;
-    private final Font standardFont = new Font("serif", Font.PLAIN, 20);
     private final SalariesT mainData;
     private final ArrayList<SalariesT> allData;
 
@@ -43,7 +43,7 @@ public class AppFrame extends JFrame {
 
     public void goToPrediction() {
         prediction = new PredictionPanel(allData, this);
-        refresh(insight);
+        refresh(prediction);
     }
 
     private void refresh(JPanel panel) {
