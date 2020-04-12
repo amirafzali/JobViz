@@ -19,7 +19,7 @@ public class AppFrame extends JFrame {
     private final ArrayList<SalariesT> allData;
 
     /**
-     * Constructor for App Frame. Instantiates the JFrame and defines properties on the frame.
+     * Constructor for AppFrame. Instantiates the JFrame and defines properties on the frame.
      * @param main Main data set of SalariesT (2019)
      * @param all All years of SalariesT data
      */
