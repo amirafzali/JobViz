@@ -6,10 +6,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Constructor for the main menu panel. Extension of the JPanel class.
+ */
 public class MenuPanel extends JPanel {
 
     private AppFrame main;
 
+    /**
+     * Constructor for the MenuPanel. Instantiates the panel and defines properties on the object.
+     * @param main Reference to the AppFrame object.
+     */
     public MenuPanel(AppFrame main) {
         this.main = main;
 
@@ -19,6 +26,11 @@ public class MenuPanel extends JPanel {
         setupFields();
     }
 
+    /**
+     * Creates the MenuPanel fields.
+     * This includes a text header intro, as well as the two buttons that take you to the
+     * Insight or the Prediction page.
+     */
     private void setupFields() {
         JPanel descArea = new JPanel(), buttonArea = new JPanel();
         Label desc = new Label("Welcome to JobViz");
