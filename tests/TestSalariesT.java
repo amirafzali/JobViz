@@ -299,6 +299,39 @@ public class TestSalariesT {
 	
 	@Test
 	public void testPositionMean() {
+		//Only professor
+		double mean = ss1.positionMean("Professor");
+		assertTrue(mean == ss1.getSalary("Sadiq Abbas").getSalary());
 		
+		//Mean changes with new professor
+		ss1.add(new SalaryT(se1[2], fn1[2], ln1[2], sa1[2], b1[2], e1[2], "Professor", y1[2]));
+		mean = ss1.positionMean("Professor");
+		assertFalse(mean == ss1.getSalary("Sadiq Abbas").getSalary());
+		
+		mean = ss1.positionMean("Not A Real Position");
+		assertFalse(mean == 0);
+		//mean is NaN
+		assertTrue(mean != mean);
+	}
+	
+	@Test
+	public void testGetters() {
+		//getSectors
+		String[] sectors1 = new String[] {se1[0], se1[1], se1[2], se1[3]};
+		assertTrue(Arrays.equals(ss1.getSectors(), sectors1));
+		String[] sectors2 = new String[] {se2[0], se2[1], se2[2], se2[3]};
+		assertTrue(Arrays.equals(ss2.getSectors(), sectors2));
+		
+		//getEmployers
+		String[] emp1 = new String[] {e1[0], e1[1], e1[2], e1[3]};
+		assertTrue(Arrays.equals(ss1.getEmployers(), emp1));
+		String[] emp2 = new String[] {e2[0], e2[1], e2[2], e2[3]};
+		assertTrue(Arrays.equals(ss2.getEmployers(), emp2));
+		
+		//getPositions
+		String[] pos1 = new String[] {p1[0], p1[1], p1[2], p1[3]};
+		assertTrue(Arrays.equals(ss1.getPositions(), pos1));
+		String[] pos2 = new String[] {p2[0], p2[1], p2[2], p2[3]};
+		assertTrue(Arrays.equals(ss2.getPositions(), pos2));
 	}
 }
