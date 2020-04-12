@@ -98,41 +98,33 @@ class Graph {
     /**
      * Creates graph from a set of Salaries
      */
-    public Graph(Salaries[] Salariess) {
-        graph = new HashMap<>(Salariess.length);
+    public Graph(Salaries[] Salaries) {
+        graph = new HashMap<>(Salaries.length);
 
         // one pass to find all vertices
-        for (Salaries e : Salariess) {
+        for (Salaries e : Salaries) {
             if (!graph.containsKey(e.v1)) graph.put(e.v1, new Vertex(e.v1));
             if (!graph.containsKey(e.v2)) graph.put(e.v2, new Vertex(e.v2));
         }
 
-        // set the adjacent vertices with additional path
-        for (Salaries e : Salariess) {
+        // set the adjacent vertices with extra path
+        for (Salaries e : Salaries) {
             graph.get(e.v1).neighbours.put(graph.get(e.v2), e.dist);
             // graph.get(e.v2).neighbours.put(graph.get(e.v1), e.dist); // also do this for an undirected graph
         }
     }
 
     /**
-     * Runs Dijkstra's algorithm using a specified source vertex
+     * Prints a path from the source to the specified vertex
      */
-    public void dijkstra(String startName) {
-        if (!graph.containsKey(startName)) {
-            System.err.printf("Graph doesn't contain start vertex \"%s\"\n", startName);
+    public void printPath(String endName) {
+        if (!graph.containsKey(endName)) {
+            System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
             return;
         }
-        final Vertex source = graph.get(startName);
-        NavigableSet<Vertex> q = new TreeSet<>();
 
-        // set-up vertices
-        for (Vertex v : graph.values()) {
-            v.previous = v == source ? source : null;
-            v.dist = v == source ? 0 : Integer.MAX_VALUE;
-            q.add(v);
-        }
-
-        dijkstra(q);
+        graph.get(endName).printPath();
+        System.out.println();
     }
 
     /**
@@ -162,16 +154,24 @@ class Graph {
     }
 
     /**
-     * Prints a path from the source to the specified vertex
+     * Runs Dijkstra's algorithm using a specified source vertex
      */
-    public void printPath(String endName) {
-        if (!graph.containsKey(endName)) {
-            System.err.printf("Graph doesn't contain end vertex \"%s\"\n", endName);
+    public void dijkstra(String startName) {
+        if (!graph.containsKey(startName)) {
+            System.err.printf("Graph doesn't contain start vertex \"%s\"\n", startName);
             return;
         }
+        final Vertex source = graph.get(startName);
+        NavigableSet<Vertex> q = new TreeSet<>();
 
-        graph.get(endName).printPath();
-        System.out.println();
+        // set-up vertices
+        for (Vertex v : graph.values()) {
+            v.previous = v == source ? source : null;
+            v.dist = v == source ? 0 : Integer.MAX_VALUE;
+            q.add(v);
+        }
+
+        dijkstra(q);
     }
 
     /**
