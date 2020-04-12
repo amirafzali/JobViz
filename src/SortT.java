@@ -56,7 +56,7 @@ public class SortT {
 
 	/**
 	 * Merges two sorted segments of the array into one sorted segment
-	 * 
+	 *
 	 * @param array     The array being sorted and merged
 	 * @param l         The lower index
 	 * @param m         The mid point
@@ -111,8 +111,8 @@ public class SortT {
 	}
 
 	/**
-	 * Merg sort implementation
-	 * 
+	 * Merge sort implementation
+	 *
 	 * @param array     The array to be sorted
 	 * @param l         The lower index bound
 	 * @param h         The upper index bound
