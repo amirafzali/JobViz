@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import exceptions.*;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -61,18 +63,20 @@ public class TestSalariesT {
     	se3 = new String[] {"!, $<!1,@7,  ,  6!a         j", "Y}Si", "Q8W' 9R d", "'V,7-N a+pr;hRy8*- Ij mz/L%A-BWk"};
     	se4 = new String[] {"", "", "", ""};;
     	
-    	sa1 = new double[] {111442.39, 113332.96, 394259.32, 157322.35}; 
-    	sa2 = new double[] {10, 99999.812479, 12072, 56089.39}; 
-    	sa3 = new double[] {0, 0, 0, 0};
+    	sa1 = new double[] {111442.39, 113332.96, 394259.32, 157322.35};
+    	sa2 = new double[] {162236.3, 104791.75, 131774.14, 111644.17}; 
+    	sa3 = new double[] {100000.00, 100000.00, 100000.00, 100000.00}; 
+    	
     	
     	b1 = new double[] {68.16, 387, 11136.52, 441.5};	
-    	b2 = new double[] {10.0, 145.12, 642.00, -221.24}; 
+    	b2 = new double[] {10.0, 145.12, 642.00, 221.24}; 
     	b3 = new double[] {0, 0, 0, 0};
     	
     	y1 = new int[] {2019, 2019, 2019, 2019}; 
     	y2 = new int[] {2016, 2017, 2019, 2021};
-    	y3 = new int[] {0, 0, 0, 0};
-    	y4 = new int[] {-124, 643, 21, 201521};
+    	y3 = new int[] {124, 643, 21, 201521};
+    	y4 = new int[] {0, 0, 0, 0};
+    	
     	
         s1[0] = new SalaryT(se1[0], fn1[0], ln1[0], sa1[0], b1[0], e1[0], p1[0], y1[0]);
         s1[1] = new SalaryT(se1[1], fn1[1], ln1[1], sa1[1], b1[1], e1[1], p1[1], y1[1]);
@@ -89,10 +93,6 @@ public class TestSalariesT {
         s3[2] = new SalaryT(se3[2], fn3[2], ln3[2], sa1[2], b1[2], e3[2], p3[2], y3[2]);
         s3[3] = new SalaryT(se3[3], fn3[3], ln3[3], sa1[3], b1[3], e3[3], p3[3], y3[3]);
         
-        s4[0] = new SalaryT(se4[0], fn4[0], ln4[0], sa3[0], b3[0], e4[0], p4[0], y4[0]);
-        s4[1] = new SalaryT(se4[1], fn4[1], ln4[1], sa3[1], b3[1], e4[1], p4[1], y4[1]);
-        s4[2] = new SalaryT(se4[2], fn4[2], ln4[2], sa3[2], b3[2], e4[2], p4[2], y4[2]);
-        s4[3] = new SalaryT(se4[3], fn4[3], ln4[3], sa3[3], b3[3], e4[3], p4[3], y4[3]);
         
         sLst1 = new ArrayList<SalaryT>(Arrays.asList(s1));
         sLst2 = new ArrayList<SalaryT>(Arrays.asList(s2));
@@ -115,6 +115,12 @@ public class TestSalariesT {
 	public void tearDown() throws Exception {
 	}
 
+	@Test (expected = InvalidDataLineException.class)
+	public void testConstructor() {
+		
+        
+	}
+	
 	@Test
 	public void testSize() {
 		assertTrue(ss1.size() == 4);
@@ -130,7 +136,5 @@ public class TestSalariesT {
 		assertTrue(ss2.getSalaries().equals(sLst2));
 		assertTrue(ss3.getSalaries().equals(sLst3));
 		assertTrue(ss4.getSalaries().equals(sLst4));
-		
 	}
-
 }
