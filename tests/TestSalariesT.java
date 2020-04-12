@@ -24,8 +24,8 @@ public class TestSalariesT {
     private double[] b1, b2, b3;
     private int[] y1, y2, y3, y4;
     
-    private SalariesT ss1, ss2, ss3, ss4, ss5, ss6;
-    private SalariesT ss1Alt, ss2Alt, ss3Alt, ss4Alt, ss5Alt, ss6Alt;
+    private SalariesT ss1, ss2, ss3, ss4;
+    private SalariesT ss1Alt, ss2Alt, ss3Alt, ss4Alt;
     
 	private ArrayList<SalaryT> sLst1, sLst2, sLst3, sLst4;
 	
@@ -184,6 +184,11 @@ public class TestSalariesT {
 		assertTrue(ss2.size() == 4);
 		assertTrue(ss3.size() == 4);
 		assertTrue(ss4.size() == 4);
+		
+		assertTrue(ss1Alt.size() == 4);
+		assertTrue(ss2Alt.size() == 4);
+		assertTrue(ss3Alt.size() == 4);
+		assertTrue(ss4Alt.size() == 4);
 	}
 	
 	@Test
@@ -192,6 +197,11 @@ public class TestSalariesT {
 		assertTrue(ss2.getSalaries().equals(sLst2));
 		assertTrue(ss3.getSalaries().equals(sLst3));
 		assertTrue(ss4.getSalaries().equals(sLst4));
+		
+		assertTrue(ss1Alt.getSalaries().equals(sLst1));
+		assertTrue(ss2Alt.getSalaries().equals(sLst2));
+		assertTrue(ss3Alt.getSalaries().equals(sLst3));
+		assertTrue(ss4Alt.getSalaries().equals(sLst4));
 	}
 	
 	@Test
@@ -209,6 +219,9 @@ public class TestSalariesT {
 		
 		assertTrue(ss3.getSalary(fn3[3] + " " + ln3[3]).equals(s3[3]));
 		assertTrue(ss4.getSalary(fn4[0] + " " + ln4[0]).equals(s4[0]));
+
+		//Works the same with alternate constructor
+		assertTrue(ss1Alt.getSalary(fn1[0] + " " + ln1[0]).equals(s1[0]));
 	}
 	
 	@Test
@@ -222,6 +235,11 @@ public class TestSalariesT {
 		assertTrue(ss1.size() == 5);
 		ss1.add(s1[0]);
 		assertTrue(ss1.size() == 6);
+		
+		//Works the same with alternate constructor
+		assertTrue(ss2Alt.getSalary(s3[0].getName()) == null);
+		ss2Alt.add(s3[0]);
+		assertTrue(ss2Alt.getSalary(s3[0].getName()).equals(s3[0]));
 	}
 	
 	@Test
@@ -358,5 +376,10 @@ public class TestSalariesT {
 		assertTrue(Arrays.equals(ss1.getPositions(), pos1));
 		String[] pos2 = new String[] {p2[0], p2[1], p2[2], p2[3]};
 		assertTrue(Arrays.equals(ss2.getPositions(), pos2));
+		
+		//Alternate constructor
+		assertTrue(ss1Alt.getSectors() == null);
+		assertTrue(ss1Alt.getEmployers() == null);
+		assertTrue(ss1Alt.getPositions() == null);
 	}
 }

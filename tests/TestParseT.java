@@ -11,6 +11,7 @@ import src.SalariesT;
 
 public class TestParseT {
 	private ParseT pt1;
+	
 	@Before
 	public void setUp() throws Exception {
 		pt1 = new ParseT("data/data2019.csv");
@@ -18,6 +19,7 @@ public class TestParseT {
 
 	@After
 	public void tearDown() throws Exception {
+		pt1 = null;
 	}
 
 	@Test (expected = Exception.class)
