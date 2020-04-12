@@ -9,11 +9,13 @@ public class SalariesT extends SortT {
 	private final String[] sectors, employers, positions;
 
 	/**
-	 * @param salaries
-	 * @param year
-	 * @param sectors
-	 * @param employers
-	 * @param positions
+	 * Constructor for SalariesT
+	 * 
+	 * @param salaries  The salaries being stored
+	 * @param year      The year the salaries are from
+	 * @param sectors   The array of sectors present in the salaries
+	 * @param employers The array of employers present in the salaries
+	 * @param positions The array of positions present in the salaries
 	 */
 	public SalariesT(ArrayList<SalaryT> salaries, int year, String[] sectors, String[] employers, String[] positions) {
 		this.s = salaries;
@@ -27,8 +29,10 @@ public class SalariesT extends SortT {
 	}
 
 	/**
-	 * @param salaries
-	 * @param year
+	 * Constructor for SalariesT
+	 * 
+	 * @param salaries The salaries being stored
+	 * @param year     The year the salaries are from
 	 */
 	public SalariesT(ArrayList<SalaryT> salaries, int year) {
 		this.s = salaries;
@@ -209,6 +213,12 @@ public class SalariesT extends SortT {
 		return salaries;
 	}
 
+	/**
+	 * Finds the mean salary for a position
+	 * 
+	 * @param position The position for which a mean is being found
+	 * @return double The mean salary of the position
+	 */
 	public double positionMean(String position) {
 		double median = 0.0;
 		for (SalaryT e : this.filterPosition(position).getSalaries()) {
@@ -218,14 +228,29 @@ public class SalariesT extends SortT {
 		return median;
 	}
 
+	/**
+	 * Get method for the sorted sectors
+	 * 
+	 * @return String[] The sorted string array of sectors
+	 */
 	public String[] getSectors() {
 		return sectors;
 	}
 
+	/**
+	 * Get method for the sorted sectors
+	 * 
+	 * @return String[] The sorted string array of employers
+	 */
 	public String[] getEmployers() {
 		return employers;
 	}
 
+	/**
+	 * Get method for the sorted positions
+	 * 
+	 * @return String[] The sorted string array of positions
+	 */
 	public String[] getPositions() {
 		return positions;
 	}
