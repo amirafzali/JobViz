@@ -116,6 +116,68 @@ public class TestSalariesT {
 
 	@After
 	public void tearDown() throws Exception {
+		s1 = null;
+		s2 = null;
+		s3 = null;
+		s4 = null;
+				
+		fn1 = null; 
+    	fn2 = null; 
+    	fn3 = null;
+    	fn4 = null;
+    	
+    	ln1 = null; 
+    	ln2 = null;
+    	ln3 = null;
+    	ln4 = null;
+    	
+    	p1 = null; 
+    	p2 = null; 
+    	p3 = null;
+    	p4 = null;
+    	
+    	e1 = null; 
+    	e2 = null;
+    	e3 = null;
+    	e4 = null;
+    	
+    	se1 = null; 
+    	se2 = null; 
+    	se3 = null;
+    	se4 = null;
+    	
+    	sa1 = null;
+    	sa2 = null; 
+    	sa3 = null; 
+    	
+    	b1 = null;	
+    	b2 = null; 
+    	b3 = null;
+    	
+    	y1 = null; 
+    	y2 = null;
+    	y3 = null;
+    	y4 = null;
+    	
+        s1 = null;
+        s2 = null;
+        s3 = null;
+        s4 = null;
+        
+        sLst1 = null;
+        sLst2 = null;
+        sLst3 = null;
+        sLst4 = null;
+        
+        ss1 = null;
+        ss2 = null;
+        ss3 = null;
+        ss4 = null;
+        		
+        ss1Alt = null;
+        ss2Alt = null;
+        ss3Alt = null;
+        ss4Alt = null;
 	}
 	
 	@Test
