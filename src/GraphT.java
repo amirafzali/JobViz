@@ -1,8 +1,9 @@
 package src;
 
 /**
- * GraphT module using Dijkstra's algorithm shortest path algorithm will be used to determine the sectors that have similar 
- * salaries where the nodes will be sector and paths between nodes will be the AVERAGE salary difference.
+ * GraphT module using Dijkstra's algorithm shortest path algorithm of SALARIES will be used with the to 
+ * determine the sectors that have similar salaries where the nodes will be sector and paths between 
+ * nodes will be the AVERAGE salary difference
  */
 
 import java.util.*;
@@ -23,14 +24,12 @@ public class GraphT {
     private static final String END = "e";
 
     /**
-     * main function
-     * Will run the code with "GRAPH" that was defined above.
+     * STARTS THE GRAPH ABOVE
      */
     public static void main(String[] args) {
         Graph g = new Graph(GRAPH);
         g.dijkstra(START);
         g.printPath(END);
-        //g.printAllPaths();
     }
 }
 
@@ -39,7 +38,7 @@ class Graph {
     private final Map<String, Vertex> graph;
 
     /**
-     * One Salaries of the graph (only used by Graph constructor)
+     * One Salaries of the graph
      */
     public static class Salaries {
         public final String v1, v2;
@@ -67,7 +66,7 @@ class Graph {
         }
 
         /**
-        * Prints a path from the source the currently created paths
+        * Method that prints path from the source the currently made paths
         */
         private void printPath() {
             if (this == this.previous) {
@@ -97,7 +96,7 @@ class Graph {
     }
 
     /**
-     * Builds a graph from a set of Salaries
+     * Creates graph from a set of Salaries
      */
     public Graph(Salaries[] Salariess) {
         graph = new HashMap<>(Salariess.length);
@@ -108,7 +107,7 @@ class Graph {
             if (!graph.containsKey(e.v2)) graph.put(e.v2, new Vertex(e.v2));
         }
 
-        // another pass to set neighbouring vertices
+        // set the adjacent vertices with additional path
         for (Salaries e : Salariess) {
             graph.get(e.v1).neighbours.put(graph.get(e.v2), e.dist);
             // graph.get(e.v2).neighbours.put(graph.get(e.v1), e.dist); // also do this for an undirected graph
@@ -145,14 +144,14 @@ class Graph {
             // vertex with shortest distance (first iteration will return source)
             u = q.pollFirst();
             if (u.dist == Integer.MAX_VALUE)
-                break; // we can ignore u (and any other remaining vertices) since they are unreachable
+                break; // ignore u since it is unreachable
 
-            // look at distances to each neighbour
+            // look at distances to each adjacent vertex
             for (Map.Entry<Vertex, Integer> a : u.neighbours.entrySet()) {
                 v = a.getKey(); // the neighbour in this iteration
 
                 final int alternateDist = u.dist + a.getValue();
-                if (alternateDist < v.dist) { // shorter path to neighbour found
+                if (alternateDist < v.dist) { // shorter path to adjacent vertex found
                     q.remove(v);
                     v.dist = alternateDist;
                     v.previous = u;
