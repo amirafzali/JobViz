@@ -3,6 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * A class that stores and manipulates SalaryT objects
+ *
+ */
 public class SalariesT extends SortT {
 	private final ArrayList<SalaryT> s;
 	private final int year;
