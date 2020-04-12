@@ -39,7 +39,7 @@ public class ParseT {
             double benefits = Double.parseDouble(formatBenefits);
             int year = Integer.parseInt(line.get(7));
 
-            allRows.add(new SalaryT(line.get(0), line.get(1), line.get(2), salary, benefits, line.get(5), line.get(6), year));
+            allRows.add(new SalaryT(line.get(0), line.get(2), line.get(1), salary, benefits, line.get(5), line.get(6), year));
         }
         scanner.close();
         if(allRows.size() == 0) throw new Exception("Empty data");
