@@ -11,6 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
+/**
+ * Class for the Insight page panel. Extension of the JPanel class.
+ */
 public class InsightPanel extends JPanel {
     private final SalariesT data;
     private JCheckBox sBox, eBox, posBox, salBox;
@@ -18,6 +21,11 @@ public class InsightPanel extends JPanel {
     private JFormattedTextField min, max;
     private AppFrame main;
 
+    /**
+     * Constructor for InsightPanel. Instantiates the panel and defines properties on the object.
+     * @param data Main data set of SalariesT to be used for lookup.
+     * @param main Reference to the original AppFrame object.
+     */
     public InsightPanel(SalariesT data, AppFrame main) {
         this.data = data;
         this.main = main;
@@ -35,6 +43,9 @@ public class InsightPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Setup the welcome and explanation text, and add them to the panel.
+     */
     private void welcomeText() {
         JPanel header = new JPanel();
         header.setLayout(new BoxLayout(header, BoxLayout.PAGE_AXIS));
@@ -51,7 +62,9 @@ public class InsightPanel extends JPanel {
         this.add(header);
     }
 
-
+    /**
+     * Setup the sector selection checkbox and combobox, then add them to the panel.
+     */
     private void setupSector() {
         JPanel sector = new JPanel();
         sector.setLayout(new FlowLayout());
@@ -65,6 +78,9 @@ public class InsightPanel extends JPanel {
         this.add(sector);
     }
 
+    /**
+     * Setup the employer selection checkbox and combobox, then add them to the panel.
+     */
     private void setupEmployer() {
         JPanel employer = new JPanel();
         employer.setLayout(new FlowLayout());
@@ -78,6 +94,9 @@ public class InsightPanel extends JPanel {
         this.add(employer);
     }
 
+    /**
+     * Setup the jon position selection checkbox and combobox, then add them to the panel.
+     */
     private void setupPosition() {
         JPanel position = new JPanel();
         position.setLayout(new FlowLayout());
@@ -91,6 +110,9 @@ public class InsightPanel extends JPanel {
         this.add(position);
     }
 
+    /**
+     * Setup the salary range formatted input boxes, then add them to the panel.
+     */
     private void setupSalary() {
         JPanel salary = new JPanel();
         salary.setLayout(new FlowLayout());
@@ -116,6 +138,9 @@ public class InsightPanel extends JPanel {
         this.add(salary);
     }
 
+    /**
+     * Setup the submit and go back buttons, then add them to the panel.
+     */
     private void setupSubmit() {
         JPanel buttonRow = new JPanel();
         JButton submit = new JButton("Show Results!");
@@ -145,10 +170,17 @@ public class InsightPanel extends JPanel {
         this.add(buttonRow);
     }
 
+    /**
+     * Instantiate a InsightOutputFrame object with some desired output data.
+     */
     public void outputBox(SalariesT outputData) {
         new InsightOutputFrame(outputData);
     }
 
+    /**
+     * Determine which filters have been selected, and apply filters to the data accordingly.
+     * Then, call outputBox with the data.
+     */
     private void showResults() {
         System.out.println(data.size());
         SalariesT copy = data.copy();

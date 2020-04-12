@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Class for the Insight page output frame
+ * Class for the Insight page output frame. Extension of the JFrame class.
  */
 public class InsightOutputFrame extends JFrame {
 
