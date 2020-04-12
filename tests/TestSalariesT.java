@@ -243,6 +243,12 @@ public class TestSalariesT {
 		ss2 = ss2.filterEmployer("Not A Real Employer");
 		assertTrue(ss2.size() == 0);
 		
+		//Empty string filtering
+		ss4 = ss4.filterEmployer("");
+		assertTrue(ss4.size() == 4);
+		ss4 = ss4.filterEmployer(" ");
+		assertTrue(ss4.size() == 0);
+		
 		//Exists before filtering
 		assertTrue(ss1.getSalary("Sadiq Abbas").getEmployer().contentEquals("Algonquin College Of Applied Arts and Technology"));
 		ss1 = ss1.filterEmployer("City Of Ottawa");
@@ -256,6 +262,15 @@ public class TestSalariesT {
 	public void testFilterSalary() {
 		ss2 = ss2.filterSalary(1000000, 1000001);
 		assertTrue(ss2.size() == 0);
+		
+		//Edge case filtering
+		SalariesT temp = ss4;
+		ss4 = ss4.filterSalary(99999, 100001);
+		assertTrue(ss4.size() == 4);
+		ss4 = ss4.filterSalary(99999, 100000);
+		assertTrue(ss4.size() == 0);
+		ss4 = temp.filterSalary(100000, 100001);
+		assertTrue(ss4.size() == 0);
 		
 		//Exists before filtering
 		assertTrue(ss1.getSalary("Sadiq Abbas").getSalary() == 111442.39);
@@ -272,6 +287,12 @@ public class TestSalariesT {
 		ss2 = ss2.filterSector("Not A Real Sector");
 		assertTrue(ss2.size() == 0);
 		
+		//Empty string filtering
+		ss4 = ss4.filterSector("");
+		assertTrue(ss4.size() == 4);
+		ss4 = ss4.filterSector(" ");
+		assertTrue(ss4.size() == 0);
+				
 		//Exists before filtering
 		assertTrue(ss1.getSalary("Sadiq Abbas").getSector().contentEquals("Universities"));
 		assertTrue(ss1.getSalary("Mary Coady").getSector().contentEquals("Other Public Sector Employers"));
@@ -287,6 +308,12 @@ public class TestSalariesT {
 		ss2 = ss2.filterPosition("Not A Real Position");
 		assertTrue(ss2.size() == 0);
 		
+		//Empty string filtering
+		ss4 = ss4.filterPosition("");
+		assertTrue(ss4.size() == 4);
+		ss4 = ss4.filterPosition(" ");
+		assertTrue(ss4.size() == 0);
+				
 		//Exists before filtering
 		assertTrue(ss1.getSalary("Sadiq Abbas").getPosition().contentEquals("Professor"));
 		assertTrue(ss1.getSalary("Mary Coady").getPosition().contentEquals("Constable"));
