@@ -32,7 +32,7 @@ public class SalaryT {
 	 *                                  0
 	 */
 	public SalaryT(String sector, String firstName, String lastName, double salary, double benefits, String employer,
-			String position, int year) throws InvalidDataLineException {
+			String position, int year) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.name = this.lastName + " " + this.firstName;
