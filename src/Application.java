@@ -6,10 +6,10 @@ import java.util.ArrayList;
 
 public class Application {
     public static void main(String[] args) {
-        GTest();
+        launch();
     }
 
-    private static void GTest() {
+    private static void launch() {
         try {
 
             ParseT parse2019 = new ParseT("data/data2019.csv");
@@ -30,7 +30,7 @@ public class Application {
             System.out.println("Done!");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("App launch failed! Probably due to missing CSVs.");
         }
     }
 }
