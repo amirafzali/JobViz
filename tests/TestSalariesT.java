@@ -93,6 +93,10 @@ public class TestSalariesT {
         s3[2] = new SalaryT(se3[2], fn3[2], ln3[2], sa1[2], b1[2], e3[2], p3[2], y3[2]);
         s3[3] = new SalaryT(se3[3], fn3[3], ln3[3], sa1[3], b1[3], e3[3], p3[3], y3[3]);
         
+        s4[0] = new SalaryT(se4[0], fn4[0], ln4[0], sa3[0], b3[0], e4[0], p4[0], y4[0]);
+        s4[1] = new SalaryT(se4[1], fn4[1], ln4[1], sa3[1], b3[1], e4[1], p4[1], y4[1]);
+        s4[2] = new SalaryT(se4[2], fn4[2], ln4[2], sa3[2], b3[2], e4[2], p4[2], y4[2]);
+        s4[3] = new SalaryT(se4[3], fn4[3], ln4[3], sa3[3], b3[3], e4[3], p4[3], y4[3]);
         
         sLst1 = new ArrayList<SalaryT>(Arrays.asList(s1));
         sLst2 = new ArrayList<SalaryT>(Arrays.asList(s2));
@@ -103,7 +107,6 @@ public class TestSalariesT {
         ss2 = new SalariesT(sLst2, y2[0], se2, e2, p2);
         ss3 = new SalariesT(sLst3, y3[0], se3, e3, p3);
         ss4 = new SalariesT(sLst4, y4[0], se4, e4, p4);
-        //ss5 = new SalariesT();
         		
         ss1Alt = new SalariesT(sLst1, y1[0]);
         ss2Alt = new SalariesT(sLst2, y2[0]);
@@ -121,7 +124,6 @@ public class TestSalariesT {
 		assertTrue(ss2.size() == 4);
 		assertTrue(ss3.size() == 4);
 		assertTrue(ss4.size() == 4);
-		//assertTrue(ss5.size() == 0);
 	}
 	
 	@Test
@@ -130,5 +132,22 @@ public class TestSalariesT {
 		assertTrue(ss2.getSalaries().equals(sLst2));
 		assertTrue(ss3.getSalaries().equals(sLst3));
 		assertTrue(ss4.getSalaries().equals(sLst4));
+	}
+	
+	@Test
+	public void testGetSalary() {
+		assertTrue(ss1.getSalary(fn1[0] + " " + ln1[0]).equals(s1[0]));
+		
+		assertTrue(ss2.getSalary(fn2[0] + " " + ln2[0]).equals(s2[0]));
+		//Duplicate names return the first occurrence
+		assertFalse(ss2.getSalary(fn2[1] + " " + ln2[1]).equals(s2[1]));
+		assertTrue(ss2.getSalary(fn2[1] + " " + ln2[1]).equals(s2[0]));
+		assertFalse(ss2.getSalary(fn2[2] + " " + ln2[2]).equals(s2[2]));
+		assertTrue(ss2.getSalary(fn2[2] + " " + ln2[2]).equals(s2[0]));
+		assertFalse(ss2.getSalary(fn2[3] + " " + ln2[3]).equals(s2[3]));
+		assertTrue(ss2.getSalary(fn2[3] + " " + ln2[3]).equals(s2[0]));
+		
+		assertTrue(ss3.getSalary(fn3[3] + " " + ln3[3]).equals(s3[3]));
+		assertTrue(ss4.getSalary(fn4[0] + " " + ln4[0]).equals(s4[0]));
 	}
 }

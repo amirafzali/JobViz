@@ -35,7 +35,7 @@ public class SalaryT {
 			String position, int year) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.name = this.lastName + " " + this.firstName;
+		this.name = this.firstName + " " + this.lastName;
 		this.salary = salary;
 		this.benefits = benefits;
 		this.sector = sector;
