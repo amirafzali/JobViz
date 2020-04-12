@@ -3,6 +3,10 @@ package src;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+/**
+ * A class containing sorting algorithms for SalaryT arrays
+ *
+ */
 public class SortT {
 
 	/**
