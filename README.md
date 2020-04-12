@@ -1,10 +1,22 @@
 # JobViz Deployment and Summary 
-### (Please look in the Deployment Section of the Repository for an in-depth explanation of project)
 
-Loaded Datasets:
+## Executive Summary
+
+It is time consuming for current or prospective employees to analyze government data in order to find information regarding the job market. JobViz aims to give users useful and readable data through visualizations and intuitive data querying, in order to streamline job hunting and analysis.
+
+The application takes various inputs selected by the user and partitions the data set such that desired groupings are achieved. The extracted data is used as a basis for querying, visualization, and other aspects of the application’s interface. 
+
+The algorithmic challenges behind the application include stable sorting, searching, and shortest graphing paths. These operations will be performed as efficiently and quickly as possible.
+
+The dataset used for the project is the Ontario Sunshine List, which includes public-sector salary disclosure on employees paid $100,000 yearly or more. The dataset can be found at https://www.ontario.ca/page/public-sector-salary-disclosure.
+
+Loaded Datasets:<br/>
 2019: 166977 rows (167k)<br/>
 2018: 151375 rows (151k)<br/>
 2017: 131909 rows (131k)<br/>
+
+## Deployment
+### (Please look in the Deployment Section of the Repository for an in-depth explanation of project)
 
 # How To Launch:
 ### (Refer to image HowToLaunch.mp4 video)
