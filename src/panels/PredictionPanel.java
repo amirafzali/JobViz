@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class PredictionPanel extends JPanel {
 
-    private ArrayList<SalariesT> data;
-    private AppFrame main;
+    private final ArrayList<SalariesT> data;
+    private final AppFrame main;
 
     private JComboBox<String> positionList;
 
