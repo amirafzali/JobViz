@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Class for the prediction page. Extension of the JPanel class.
+ */
 public class PredictionPanel extends JPanel {
 
     private final ArrayList<SalariesT> data;
@@ -19,7 +22,11 @@ public class PredictionPanel extends JPanel {
 
     private JTextField f2017, f2018, f2019, fPredict;
 
-
+    /**
+     * Constructor for PredictionPanel. Instantiates the panel and defines properties on the object.
+     * @param allData All SalariesT data available.
+     * @param main Reference to the AppFrame object.
+     */
     public PredictionPanel(ArrayList<SalariesT> allData, AppFrame main) {
         this.data = allData;
         this.main = main;
@@ -35,6 +42,9 @@ public class PredictionPanel extends JPanel {
         repaint();
     }
 
+    /**
+     * Adds the header text to the panel.
+     */
     private void welcomeText() {
         JPanel header = new JPanel();
         header.setLayout(new BoxLayout(header, BoxLayout.PAGE_AXIS));
@@ -48,6 +58,9 @@ public class PredictionPanel extends JPanel {
         add(header);
     }
 
+    /**
+     * Adds a combo box for picking the desired position to perform a prediction calculation on.
+     */
     private void setupPosition() {
         JPanel position = new JPanel();
         position.setLayout(new FlowLayout());
@@ -59,6 +72,9 @@ public class PredictionPanel extends JPanel {
         add(position);
     }
 
+    /**
+     * Adds the result ouput text fields to the panel.
+     */
     private void setupOuts() {
         f2017 = new JTextField("2017: Waiting...");
         f2018 = new JTextField("2018: Waiting...");
@@ -74,6 +90,9 @@ public class PredictionPanel extends JPanel {
         }
     }
 
+    /**
+     * Add submit and go back to menu buttons to the panel. Defines action listeners on the buttons.
+     */
     private void setupSubmit() {
         JPanel buttonRow = new JPanel();
         JButton submit = new JButton("Show Results!");
@@ -102,6 +121,10 @@ public class PredictionPanel extends JPanel {
         add(buttonRow);
     }
 
+    /**
+     * Function that is called when show results is clicked. Calls refresh with the
+     * salary averages for the past 3 years, and the prediction for next year.
+     */
     private void showResults() {
         PredictionT predict = new PredictionT(data);
         String pos = (String) positionList.getSelectedItem();
@@ -111,6 +134,13 @@ public class PredictionPanel extends JPanel {
         refresh(avg2017, avg2018, avg2019, avgPredict);
     }
 
+    /**
+     * Attempts to set the outputs. If data is missing, then it is indicated as so, and no prediction is showed.
+     * @param a1 Average salary for the position, from 2017.
+     * @param a2 Average salary for the position, from 2018.
+     * @param a3 Average salary for the position, from 2019.
+     * @param a4 Calculated prediction of average salary for the position in the next year (2020).
+     */
     private void refresh(double a1, double a2, double a3, double a4) {
         f2017.setText(String.format("2018: $%.2f", a1));
         f2018.setText(String.format("2019: $%.2f", a2));
