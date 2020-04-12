@@ -10,10 +10,6 @@ The algorithmic challenges behind the application include stable sorting, search
 
 The dataset used for the project is the Ontario Sunshine List, which includes public-sector salary disclosure on employees paid $100,000 yearly or more. The dataset can be found at https://www.ontario.ca/page/public-sector-salary-disclosure.
 
-Loaded Datasets:<br/>
-2019: 166977 rows (167k)<br/>
-2018: 151375 rows (151k)<br/>
-2017: 131909 rows (131k)<br/>
 
 ## Deployment
 ### (Please look in the Deployment Section of the Repository for an in-depth explanation of project)
