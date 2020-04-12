@@ -114,12 +114,6 @@ public class TestSalariesT {
 	@After
 	public void tearDown() throws Exception {
 	}
-
-	@Test (expected = InvalidDataLineException.class)
-	public void testConstructor() {
-		
-        
-	}
 	
 	@Test
 	public void testSize() {
