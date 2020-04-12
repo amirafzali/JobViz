@@ -6,15 +6,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AppFrame extends JFrame {
 
     public JPanel mainMenu, insight, prediction;
     private final Font standardFont = new Font("serif", Font.PLAIN, 20);
     private final SalariesT mainData;
+    private final ArrayList<SalariesT> allData;
 
-    public AppFrame(SalariesT main) {
-        mainData = main;
+    public AppFrame(SalariesT main, ArrayList<SalariesT> all) {
+        this.mainData = main;
+        this.allData = all;
+
         setTitle("JobViz");
         setResizable(false);
         setLocationRelativeTo(null);
@@ -37,7 +41,12 @@ public class AppFrame extends JFrame {
         refresh(insight);
     }
 
-    public void refresh(JPanel panel) {
+    public void goToPrediction() {
+        prediction = new PredictionPanel(allData, this);
+        refresh(insight);
+    }
+
+    private void refresh(JPanel panel) {
         getContentPane().removeAll();
         add(panel);
         revalidate();
