@@ -212,4 +212,93 @@ public class TestSalariesT {
 		assertTrue(ss3.getSalary(fn3[3] + " " + ln3[3]).equals(s3[3]));
 		assertTrue(ss4.getSalary(fn4[0] + " " + ln4[0]).equals(s4[0]));
 	}
+	
+	@Test
+	public void testAdd() {
+		//Add new value
+		assertTrue(ss1.getSalary(s2[0].getName()) == null);
+		ss1.add(s2[0]);
+		assertTrue(ss1.getSalary(s2[0].getName()).equals(s2[0]));
+		
+		//Add duplicate
+		assertTrue(ss1.size() == 5);
+		ss1.add(s1[0]);
+		assertTrue(ss1.size() == 6);
+	}
+	
+	@Test
+	public void testCopy() {
+		//Different object instance
+		assertFalse(ss1.copy() == ss1);
+		assertFalse(ss1.copy().equals(ss1));
+		
+		//Salaries are copied
+		assertFalse(ss2.getSalaries().equals(ss1.getSalaries()));
+		ss2 = ss1.copy();
+		assertTrue(ss2.getSalaries().equals(ss1.getSalaries()));
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void testFilterEmployer() {
+		ss2 = ss2.filterEmployer("Not A Real Employer");
+		assertTrue(ss2.size() == 0);
+		
+		//Exists before filtering
+		assertTrue(ss1.getSalary("Sadiq Abbas").getEmployer().contentEquals("Algonquin College Of Applied Arts and Technology"));
+		ss1 = ss1.filterEmployer("City Of Ottawa");
+		//Object still exists
+		assertTrue(ss1.getSalary("Mary Coady").getEmployer().contentEquals("City Of Ottawa"));
+		//Other object no longer exists
+		assertFalse(ss1.getSalary("Sadiq Abbas").getEmployer().contentEquals("Algonquin College Of Applied Arts and Technology"));		
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void testFilterSalary() {
+		ss2 = ss2.filterSalary(1000000, 1000001);
+		assertTrue(ss2.size() == 0);
+		
+		//Exists before filtering
+		assertTrue(ss1.getSalary("Sadiq Abbas").getSalary() == 111442.39);
+		assertTrue(ss1.getSalary("Mary Coady").getSalary() == 113332.96);
+		ss1 = ss1.filterSalary(111440, 111445);
+		//Object still exists
+		assertTrue(ss1.getSalary("Sadiq Abbas").getSalary()  == 111442.39);
+		//Other object no longer exists
+		assertFalse(ss1.getSalary("Mary Coady").getSalary() == 113332.96);		
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void testFilterSector() {
+		ss2 = ss2.filterSector("Not A Real Sector");
+		assertTrue(ss2.size() == 0);
+		
+		//Exists before filtering
+		assertTrue(ss1.getSalary("Sadiq Abbas").getSector().contentEquals("Universities"));
+		assertTrue(ss1.getSalary("Mary Coady").getSector().contentEquals("Other Public Sector Employers"));
+		ss1 = ss1.filterSector("Other Public Sector Employers");
+		//Object still exists
+		assertTrue(ss1.getSalary("Mary Coady").getSector().contentEquals("Other Public Sector Employers"));
+		//Other object no longer exists
+		assertFalse(ss1.getSalary("Sadiq Abbas").getSector().contentEquals("Universities"));		
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void testFilterPosition() {
+		ss2 = ss2.filterPosition("Not A Real Position");
+		assertTrue(ss2.size() == 0);
+		
+		//Exists before filtering
+		assertTrue(ss1.getSalary("Sadiq Abbas").getPosition().contentEquals("Professor"));
+		assertTrue(ss1.getSalary("Mary Coady").getPosition().contentEquals("Constable"));
+		ss1 = ss1.filterPosition("Constable");
+		//Object still exists
+		assertTrue(ss1.getSalary("Mary Coady").getPosition().contentEquals("Constable"));
+		//Other object no longer exists
+		assertFalse(ss1.getSalary("Sadiq Abbas").getPosition().contentEquals("Professor"));	
+	}
+	
+	@Test
+	public void testPositionMean() {
+		
+	}
 }
