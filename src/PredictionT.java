@@ -30,7 +30,7 @@ public class PredictionT {
 		ArrayList<Double> trend = this.changePerYear(position);
 		double rateOfChange = ((trend.get(trend.size() - 1) - trend.get(trend.size() - 2))
 				+ trend.get(trend.size() - 1));
-		double salary = this.seqSalaries.get(this.seqSalaries.size() - 1).positionMean(position) * rateOfChange;
+		double salary = this.seqSalaries.get(this.seqSalaries.size() - 2).positionMean(position) * rateOfChange;
 		ArrayList<Double> prediction = new ArrayList<>();
 		prediction.add(salary);
 		prediction.add(rateOfChange);
