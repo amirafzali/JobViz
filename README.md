@@ -16,7 +16,6 @@ The dataset used for the project is the Ontario Sunshine List, which includes pu
 ### How To Launch:
 View the video [here](https://www.youtube.com/watch?v=h-6cSxfsuyQ&lc=Ugx8VymEYvLoTK35p_Z4AaABAg)
 
-#### (Refer to image HowToLaunch.mp4 video)
 Compile the program in your IDE of choice (not command line).
 If a java version mismatch error occurs, please *rebuild* the project on your system.
 
