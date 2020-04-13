@@ -14,7 +14,7 @@ The dataset used for the project is the Ontario Sunshine List, which includes pu
 ## Deployment
 
 ### How To Launch:
-#### (Please look in the Deployment Section of the Repository for an in-depth explanation of project)
+View the video [here](https://www.youtube.com/watch?v=h-6cSxfsuyQ&lc=Ugx8VymEYvLoTK35p_Z4AaABAg)
 
 #### (Refer to image HowToLaunch.mp4 video)
 Compile the program in your IDE of choice (not command line).
@@ -26,7 +26,7 @@ The console will indicate that the program is loading.
 Once it has loaded, then the GUI will open to the main menu.
 
 ### How To Use Job Insight:
-#### (Refer to image HowToJobInsight.mp4 video)
+View the video [here](https://www.youtube.com/watch?v=qXNIUx3oiek)
 
 From the main menu, click the job insight button.
 Here, you are able to extract important information from the data set, that is relevant to your
@@ -41,7 +41,7 @@ pop up.
 From here, the result data can be sorted and investigated as desired.
 
 ### How To Use Salary Prediction:
-#### (Refer to image HowToPrediction.mp4 video)
+View the video [here](https://www.youtube.com/watch?v=bmbGFDHIG_8)
 
 From the main menu, click the salary prediction button.
 Here, you are able to view past salary averages, and a prediction for the future.
