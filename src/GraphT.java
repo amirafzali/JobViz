@@ -1,7 +1,7 @@
 package src;
 
 /**
- * GraphT module using Dijkstra's algorithm shortest path algorithm of SALARIES will be used with the to 
+ * GraphT module using predictSalary's algorithm shortest path algorithm of SALARIES will be used with the to 
  * determine the sectors that have similar salaries where the nodes will be sector and paths between 
  * nodes will be the AVERAGE salary difference
  */
@@ -19,7 +19,7 @@ public class GraphT {
      */
     public static void main(String[] args) {
         Graph g = new Graph(GRAPH);
-        g.dijkstra(START);
+        g.predictSalary(START);
         g.printPath(END);
     }
 }
@@ -119,9 +119,9 @@ class Graph {
     }
 
     /**
-     * Implementation of dijkstra's algorithm using a binary heap data structure
+     * Implementation of predictSalary's algorithm using a binary heap data structure
      */
-    private void dijkstra(final NavigableSet<Vertex> q) {
+    private void predictSalary(final NavigableSet<Vertex> q) {
         Vertex u, v;
         while (!q.isEmpty()) {
             // vertex with shortest distance (first iteration will return source)
@@ -145,9 +145,9 @@ class Graph {
     }
 
     /**
-     * Runs Dijkstra's algorithm using a specified source vertex
+     * Runs predictSalary's algorithm using a specified source vertex
      */
-    public void dijkstra(String startName) {
+    public void predictSalary(String startName) {
         if (!graph.containsKey(startName)) {
             System.err.printf("Graph doesn't contain start vertex \"%s\"\n", startName);
             return;
@@ -162,7 +162,7 @@ class Graph {
             q.add(v);
         }
 
-        dijkstra(q);
+        predictSalary(q);
     }
 
     /**
