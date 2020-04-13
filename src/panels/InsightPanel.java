@@ -182,10 +182,7 @@ public class InsightPanel extends JPanel {
      * Then, call outputBox with the data.
      */
     private void showResults() {
-        System.out.println(data.size());
         SalariesT copy = data.copy();
-        System.out.println(copy.size());
-
         if(sBox.isSelected()) {
             copy = copy.filterSector(String.valueOf(sList.getSelectedItem()));
         }

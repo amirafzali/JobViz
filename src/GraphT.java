@@ -119,7 +119,7 @@ class Graph {
     }
 
     /**
-     * Implementation of predictSalary's algorithm using a binary heap data structure
+     * Implementation of predictSalary using a binary heap data structure to perform Dijkstra
      */
     private void predictSalary(final NavigableSet<Vertex> q) {
         Vertex u, v;
@@ -145,7 +145,7 @@ class Graph {
     }
 
     /**
-     * Runs predictSalary's algorithm using a specified source vertex
+     * Runs predictSalary using a specified source vertex with Dijkstra
      */
     public void predictSalary(String startName) {
         if (!graph.containsKey(startName)) {
