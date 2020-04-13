@@ -55,17 +55,22 @@ public class TestPredictionT {
 			assertTrue(mean19 > mean18);
 		}
 		
+		
+	}
+	
+	@Test 
+	public void testInvalidPredict() {
 		//Insufficient data
-		mean19 = p1.getAllSalaries().positionMean("1st Class Firefighter / Acting Captain");
-		mean18 = p2.getAllSalaries().positionMean("1st Class Firefighter / Acting Captain");
+		double mean19 = p1.getAllSalaries().positionMean("1st Class Firefighter / Acting Captain");
+		double mean18 = p2.getAllSalaries().positionMean("1st Class Firefighter / Acting Captain");
 		double mean17 = p3.getAllSalaries().positionMean("1st Class Firefighter / Acting Captain");
 		//Position existed in 2019
 		assertTrue(mean19 == mean19);
 		//Position did not exist in 2017 or 2018
 		assertFalse(mean18 == mean18);
 		assertFalse(mean17 == mean17);
-		meanLst.clear();
-		meanLst = pred1.predict("1st Class Firefighter / Acting Captain");
+		
+		ArrayList<Double> meanLst = pred1.predict("1st Class Firefighter / Acting Captain");
 		//Prediction does not exist because data is insufficient
 		double predSal = meanLst.get(0);
 		double predROC = meanLst.get(1);
