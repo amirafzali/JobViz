@@ -130,8 +130,9 @@ public class PredictionPanel extends JPanel {
         String pos = (String) positionList.getSelectedItem();
         double avg2017 = data.get(0).positionMean(pos), avg2018 = data.get(1).positionMean(pos), avg2019 = data.get(2).positionMean(pos);
         double avgPredict = predict.predict(pos).get(0);
+        double rate = predict.predict(pos).get(1);
 
-        refresh(avg2017, avg2018, avg2019, avgPredict);
+        refresh(avg2017, avg2018, avg2019, avgPredict, rate);
     }
 
     /**
@@ -140,21 +141,40 @@ public class PredictionPanel extends JPanel {
      * @param a2 Average salary for the position, from 2018.
      * @param a3 Average salary for the position, from 2019.
      * @param a4 Calculated prediction of average salary for the position in the next year (2020).
+     * @param a5 Changed rate of salary for the predicted year.
      */
-    private void refresh(double a1, double a2, double a3, double a4) {
-        f2017.setText(String.format("2018: $%.2f", a1));
-        f2018.setText(String.format("2019: $%.2f", a2));
+    private void refresh(double a1, double a2, double a3, double a4, double a5) {
+        f2017.setText(String.format("2017: $%.2f", a1));
+        f2018.setText(String.format("2018: $%.2f", a2));
         f2019.setText(String.format("2019: $%.2f", a3));
-        fPredict.setText(String.format("2020: $%.2f", a4));
+
+        String toUse = "";
+        double real = 0;
+        System.out.println(a5);
+        if(!Double.isNaN(a4) && !Double.isNaN(a5)) {
+            real = a5*100;
+            if(real < 100) {
+                toUse = "% decline";
+                real = 100-real;
+            } else if(real > 100) {
+                real = real-100;
+                toUse = "% increase";
+            } else {
+                toUse = "%, no change";
+            }
+        }
+        real = Math.abs(real);
+
+        fPredict.setText(String.format("2020: $%.2f, %.2f%s", a4, real, toUse));
 
         if(Double.isNaN(a1)) {
-            f2017.setText(String.format("2017: Insufficient data!", a1));
-            fPredict.setText(String.format("Prediction (2020): Cannot calculate due to missing data.", a4));
+            f2017.setText("2017: Insufficient data!");
+            fPredict.setText("Prediction (2020): Cannot calculate due to missing data.");
         }
 
         if (Double.isNaN(a2)){
-            f2018.setText(String.format("2018: Insufficient data!", a1));
-            fPredict.setText(String.format("Prediction (2020): Cannot calculate due to missing data.", a4));
+            f2018.setText("2018: Insufficient data!");
+            fPredict.setText("Prediction (2020): Cannot calculate due to missing data.");
         }
 
         revalidate();
