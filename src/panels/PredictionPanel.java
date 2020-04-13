@@ -150,7 +150,6 @@ public class PredictionPanel extends JPanel {
 
         String toUse = "";
         double real = 0;
-        System.out.println(a5);
         if(!Double.isNaN(a4) && !Double.isNaN(a5)) {
             real = a5*100;
             if(real < 100) {
